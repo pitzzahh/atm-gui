@@ -24,8 +24,8 @@ public class Atm extends Application {
     private static AtmService service;
     private static final Logger LOGGER = LoggerFactory.getLogger(Atm.class);
 
-    private double x = 0;
-    private double y = 0;
+    private double horizontal = 0;
+    private double vertical = 0;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -34,13 +34,13 @@ public class Atm extends Application {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.getIcons().add(new Image(requireNonNull(Atm.class.getResourceAsStream("img/logo.png"), "logo not found")));
         root.setOnMousePressed(event -> {
-            x = event.getSceneX();
-            y = event.getSceneY();
+            horizontal = event.getSceneX();
+            vertical = event.getSceneY();
         });
 
         root.setOnMouseDragged(event -> {
-            stage.setX(event.getScreenX() - x);
-            stage.setY(event.getScreenY() - y);
+            stage.setX(event.getScreenX() - horizontal);
+            stage.setY(event.getScreenY() - vertical);
         });
 
         stage.setScene(scene);
