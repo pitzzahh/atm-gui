@@ -1,6 +1,6 @@
 .main-label {
     -fx-font-family: "JetBrains Mono";
-    -fx-font-size: 40px;
+    -fx-font-size: 70px;
     -fx-text-fill: #ffff;
     -fx-font-weight: bold;
 }
@@ -8,16 +8,24 @@
 .main-label:hover {
     -fx-text-fill: #bde0fe;
 }
+
+.subtitle {
+    -fx-font-family: "JetBrains Mono";
+    -fx-font-size: 20px;
+    -fx-text-fill: #ffff;
+    -fx-font-weight: bold;
+}
+
 .message {
     -fx-font-family: "JetBrains Mono";
     -fx-font-size: 20px;
     -fx-text-fill: red;
     -fx-font-weight: bold;
 }
+
 .account-number-field {
     -fx-font-family: "JetBrains Mono";
     -fx-font-size: 30px;
-    -fx-text-fill: transparent;
     -fx-background-color: transparent;
     -fx-font-weight: bold;
     -fx-border-radius: 50px;
@@ -25,6 +33,6 @@
 }
 
 .account-number-field:hover {
-    -fx-text-fill: #565555;
+    -fx-text-fill: #4f4d4d;
 }
 
