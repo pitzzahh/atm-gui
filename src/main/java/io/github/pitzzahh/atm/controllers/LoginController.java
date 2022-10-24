@@ -1,7 +1,9 @@
 package io.github.pitzzahh.atm.controllers;
 
+import static io.github.pitzzahh.atm.Atm.getLogger;
 import io.github.pitzzahh.atm.validator.Validator;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.control.Label;
 import javafx.fxml.FXML;
@@ -18,18 +20,27 @@ public class LoginController {
     @FXML
     private Label message;
 
-    @FXML
-    // TODO: fix bug not called when enter is pressed
+
     public void onEnter(KeyEvent keyEvent) {
-        var isEnter = keyEvent.getCode().getName().equals("Enter");
-        if (isEnter) {
-            try {
-                var exist = Validator.doesAccountExist(accountNumberField.getText());
-                if (exist) message.setText("Account number exists");
-                else message.setText("Account number does not exist");
-            } catch (RuntimeException runtimeException) {
-                message.setText(runtimeException.getMessage());
+        accountNumberField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                getLogger().info("Enter key pressed");
+                check();
             }
+        });
+    }
+
+    private void check() {
+        try {
+            var doesAccountExist = Validator.doesAccountExist(accountNumberField.getText());
+            var exist = "";
+            if (doesAccountExist) exist = "Account number exists";
+            else exist = "Account number does not exist";
+            message.setText(exist);
+            getLogger().debug(exist);
+        } catch (RuntimeException runtimeException) {
+            message.setText(runtimeException.getMessage());
+            getLogger().error(runtimeException.getMessage());
         }
     }
 }
