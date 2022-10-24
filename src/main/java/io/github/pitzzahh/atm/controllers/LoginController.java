@@ -34,8 +34,8 @@ public class LoginController {
         try {
             var doesAccountExist = Validator.doesAccountExist(accountNumberField.getText());
             var exist = "";
-            if (doesAccountExist) exist = "Account number exists";
-            else exist = "Account number does not exist";
+            if (doesAccountExist) exist = "Account exists";
+            else exist = "Account does not exist";
             message.setText(exist);
             getLogger().debug(exist);
         } catch (RuntimeException runtimeException) {
