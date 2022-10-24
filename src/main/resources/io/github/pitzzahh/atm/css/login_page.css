@@ -19,7 +19,7 @@
 .message {
     -fx-font-family: "JetBrains Mono";
     -fx-font-size: 20px;
-    -fx-text-fill: red;
+    -fx-text-fill: #d62828;
     -fx-font-weight: bold;
 }
 
