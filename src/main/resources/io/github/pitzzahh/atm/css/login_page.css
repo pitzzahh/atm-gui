@@ -1,18 +1,18 @@
 .main-label {
     -fx-font-family: "JetBrains Mono";
     -fx-font-size: 70px;
-    -fx-text-fill: #ffff;
+    -fx-text-fill: #fefae0;
     -fx-font-weight: bold;
 }
 
 .main-label:hover {
-    -fx-text-fill: #bde0fe;
+    -fx-text-fill: #d4a373;
 }
 
 .subtitle {
     -fx-font-family: "JetBrains Mono";
     -fx-font-size: 20px;
-    -fx-text-fill: #ffff;
+    -fx-text-fill: #ccd5ae;
     -fx-font-weight: bold;
 }
 
@@ -30,6 +30,7 @@
     -fx-font-weight: bold;
     -fx-border-radius: 50px;
     -fx-border-color: #2c4642;
+    -fx-border-width: 1px;
 }
 
 .account-number-field:hover {
