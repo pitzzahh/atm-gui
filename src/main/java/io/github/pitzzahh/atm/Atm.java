@@ -3,6 +3,7 @@ package io.github.pitzzahh.atm;
 import io.github.pitzzahh.util.utilities.classes.enums.Gender;
 import io.github.pitzzahh.util.utilities.classes.Person;
 import io.github.pitzzahh.atm.service.AtmService;
+import static java.util.Objects.requireNonNull;
 import io.github.pitzzahh.atm.entity.Client;
 import io.github.pitzzahh.atm.dao.InMemory;
 import javafx.application.Application;
@@ -15,7 +16,6 @@ import java.time.LocalDate;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.util.Objects;
 import org.slf4j.Logger;
 import java.time.Month;
 
@@ -29,10 +29,10 @@ public class Atm extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(Atm.class.getResource("login_page.fxml")));
+        Parent root = FXMLLoader.load(requireNonNull(Atm.class.getResource("login_page.fxml")));
         var scene = new Scene(root);
         stage.initStyle(StageStyle.UNDECORATED);
-        stage.getIcons().add(new Image(Objects.requireNonNull(Atm.class.getResourceAsStream("img/logo.png"), "logo not found")));
+        stage.getIcons().add(new Image(requireNonNull(Atm.class.getResourceAsStream("img/logo.png"), "logo not found")));
         root.setOnMousePressed(event -> {
             x = event.getSceneX();
             y = event.getSceneY();
