@@ -1,18 +1,16 @@
 package io.github.pitzzahh.atm.controllers;
 
+import static io.github.pitzzahh.atm.util.Util.getWindow;
 import io.github.pitzzahh.util.utilities.SecurityUtil;
 import static io.github.pitzzahh.atm.Atm.getLogger;
 import io.github.pitzzahh.atm.validator.Validator;
-import static java.util.Objects.requireNonNull;
+import javafx.scene.input.InputMethodEvent;
 import io.github.pitzzahh.atm.util.Util;
 import javafx.scene.control.TextField;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import io.github.pitzzahh.atm.Atm;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import java.io.IOException;
 import javafx.scene.Scene;
 import javafx.fxml.FXML;
@@ -48,24 +46,24 @@ public class LoginController {
         try {
             final var fieldText = accountNumberField.getText();
             final var $admin = SecurityUtil.decrypt("QGRtMW4xJHRyNHQwcg==");
-            var m = "";
+            var debugMessage = "";
             getLogger().debug("Admin account number: {}", $admin);
             if (fieldText.equals($admin)) {
-                var adminPage = (Parent) FXMLLoader.load(requireNonNull(Atm.class.getResource("adminPage.fxml")));
-                var scene = new Scene(adminPage);
+                var adminWindow = getWindow("admin_window");
+                var scene = new Scene(adminWindow);
                 Atm.getStage().close();
-                Util.moveWindow(adminPage);
+                Util.moveWindow(adminWindow);
                 Atm.getStage().setScene(scene);
                 Atm.getStage().show();
-                m = "Welcome admin!";
+                debugMessage = "Welcome admin!";
             }
             else {
                 var doesAccountExist = Validator.doesAccountExist(fieldText);
-                if (doesAccountExist) m = "Account exists";
-                else m = "Account does not exist";
-                message.setText(m);
+                if (doesAccountExist) debugMessage = "Account exists";
+                else debugMessage = "Account does not exist";
+                message.setText(debugMessage);
             }
-            getLogger().debug(m);
+            getLogger().debug(debugMessage);
         } catch (RuntimeException runtimeException) {
             message.setText(runtimeException.getMessage());
             getLogger().error(runtimeException.getMessage());
