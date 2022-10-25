@@ -6,6 +6,16 @@
     -fx-background-color: #83c5be;
 }
 
+.button {
+    -fx-background-color: #2d6a4f;
+    -fx-text-fill: #006d77;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-opacity: 0.5;
+}
+
 .add_client_button {
     -fx-background-color: #043033;
     -fx-font-size: 1.2em;
