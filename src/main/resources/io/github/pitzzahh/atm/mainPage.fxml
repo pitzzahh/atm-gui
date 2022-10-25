@@ -5,17 +5,18 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" snapToPixel="false" stylesheets="@css/login_page.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.pitzzahh.atm.controllers.LoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" snapToPixel="false" stylesheets="@css/mainPage.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.pitzzahh.atm.controllers.LoginController">
    <center>
       <AnchorPane prefHeight="319.0" prefWidth="578.0" BorderPane.alignment="CENTER">
          <ImageView fitHeight="418.0" fitWidth="665.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@img/loginPage/background_image.jpg" />
+            <Image url="@img/mainPage/background_image.jpg" />
          </ImageView>
-         <Label alignment="TOP_CENTER" layoutX="149.0" layoutY="60.0" prefHeight="150.0" prefWidth="321.0" styleClass="main-label" stylesheets="@css/login_page.css" text="PUB ATM" textAlignment="CENTER" textFill="WHITE">
+         <Label alignment="TOP_CENTER" layoutX="149.0" layoutY="60.0" prefHeight="150.0" prefWidth="321.0" styleClass="main-label" stylesheets="@css/mainPage.css" text="PUB ATM" textAlignment="CENTER" textFill="WHITE">
          </Label>
          <Text fill="WHITE" fontSmoothingType="LCD" layoutX="183.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-family: JetBrains Mono; -fx-font-size: 20px; -fx-text-fill: #ffff; -fx-font-weight: bold;" styleClass="subtitle" text=" Pitzzahh United Bank" textAlignment="CENTER" wrappingWidth="253.896484375" />
          <HBox alignment="TOP_CENTER" layoutX="1.0" layoutY="218.0" prefHeight="62.0" prefWidth="618.0">
-            <TextField fx:id="accountNumberField" alignment="CENTER" onInputMethodTextChanged="#onTextFieldChange" onKeyPressed="#onEnter" onKeyTyped="#onKeyTyped" prefHeight="55.0" prefWidth="433.0" promptText="account number" styleClass="account-number-field" stylesheets="@css/login_page.css">
+            <ProgressBar prefWidth="200.0" progress="0.0" stylesheets="@css/mainPage.css" />
+            <TextField fx:id="accountNumberField" alignment="CENTER" onInputMethodTextChanged="#onTextFieldChange" onKeyPressed="#onEnter" onKeyTyped="#onKeyTyped" prefHeight="55.0" prefWidth="433.0" promptText="account number" styleClass="account-number-field" stylesheets="@css/mainPage.css">
                <font>
                   <Font size="6.0" />
                </font>
@@ -25,13 +26,13 @@
             <Label fx:id="message" alignment="CENTER" prefHeight="18.0" prefWidth="333.0" styleClass="message" />
          </HBox>
          <ImageView fitHeight="40.0" fitWidth="58.0" layoutX="523.0" layoutY="364.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@img/loginPage/master_card_logo_100px.png" />
+            <Image url="@img/mainPage/master_card_logo_100px.png" />
          </ImageView>
          <ImageView fitHeight="40.0" fitWidth="58.0" layoutX="571.0" layoutY="364.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@img/loginPage/visa_logo_100px.png" />
+            <Image url="@img/mainPage/visa_logo_100px.png" />
          </ImageView>
          <ImageView fitHeight="40.0" fitWidth="58.0" layoutX="476.0" layoutY="364.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@img/loginPage/american_express_logo_100px.png" />
+            <Image url="@img/mainPage/american_express_logo_100px.png" />
          </ImageView>
       </AnchorPane>
    </center>
