@@ -11,7 +11,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import io.github.pitzzahh.atm.Atm;
-import java.io.IOException;
 import javafx.scene.Scene;
 import javafx.fxml.FXML;
 
@@ -32,7 +31,7 @@ public class LoginController {
      * @param keyEvent the key event.
      */
     @FXML
-    public void onEnter(KeyEvent keyEvent) throws IOException {
+    public void onEnter(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.ENTER) {
             getLogger().debug("Enter key pressed");
             checkCredential();
