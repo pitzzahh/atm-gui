@@ -1,6 +1,5 @@
 package io.github.pitzzahh.atm;
 
-import io.github.pitzzahh.atm.util.Util;
 import io.github.pitzzahh.util.utilities.classes.enums.Gender;
 import io.github.pitzzahh.util.utilities.classes.Person;
 import io.github.pitzzahh.atm.service.AtmService;
@@ -8,6 +7,7 @@ import static io.github.pitzzahh.atm.util.Util.getWindow;
 import static java.util.Objects.requireNonNull;
 import io.github.pitzzahh.atm.entity.Client;
 import io.github.pitzzahh.atm.dao.InMemory;
+import io.github.pitzzahh.atm.util.Util;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.StageStyle;
@@ -21,18 +21,37 @@ import javafx.stage.Stage;
 import org.slf4j.Logger;
 import java.time.Month;
 
+/**
+ * The main class of the application.
+ */
 public class Atm extends Application {
 
     private static AtmService service;
     private static final Logger LOGGER = LoggerFactory.getLogger(Atm.class);
 
     private static Stage stage;
+
+    /**
+     * The main entry point for all JavaFX applications.
+     * The start method is called after the init method has returned,
+     * and after the system is ready for the application to begin running.
+     *
+     * <p>
+     * NOTE: This method is called on the JavaFX Application Thread.
+     * </p>
+     *
+     * @param primaryStage the primary stage for this application, onto which
+     *                     the application scene can be set.
+     *                     Applications may create other stages, if needed, but they will not be
+     *                     primary stages.
+     * @throws Exception if something goes wrong
+     */
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage primaryStage) throws Exception {
         initParents();
         var parent = getWindow("main_window");
         var scene = new Scene(parent);
-        Atm.stage = stage;
+        Atm.stage = primaryStage;
         getStage().initStyle(StageStyle.UNDECORATED);
         getStage().getIcons().add(new Image(requireNonNull(Atm.class.getResourceAsStream("img/loginPage/logo.png"), "logo not found")));
         Util.moveWindow(parent);
@@ -41,6 +60,10 @@ public class Atm extends Application {
         LOGGER.info("Application started");
     }
 
+    /**
+     * main method
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         service = new AtmService(new InMemory());
         service.saveClient().apply(
@@ -60,6 +83,12 @@ public class Atm extends Application {
         );
         launch();
     }
+
+    /**
+     * Initializes the parents.
+     * The window is loaded from the FXML file.
+     * @throws IOException if the parent cannot be loaded.
+     */
     private void initParents() throws IOException {
         var mainPage = (Parent) FXMLLoader.load(requireNonNull(Atm.class.getResource("mainPage.fxml")));
         var adminPage = (Parent) FXMLLoader.load(requireNonNull(Atm.class.getResource("adminPage.fxml")));
@@ -67,13 +96,27 @@ public class Atm extends Application {
         mainPage.setId("main_window");
         Util.addParents(mainPage, adminPage);
     }
+
+    /**
+     * Gets the service for atm.
+     * @return the service.
+     */
     public static AtmService getService() {
         return service;
     }
+
+    /**
+     * Gets the logger for atm.
+     * @return the logger.
+     */
     public static Logger getLogger() {
         return LOGGER;
     }
 
+    /**
+     * Gets the stage for atm.
+     * @return the stage.
+     */
     public static Stage getStage() {
         return stage;
     }
