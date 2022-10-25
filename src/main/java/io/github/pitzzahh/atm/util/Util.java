@@ -1,8 +1,6 @@
 package io.github.pitzzahh.atm.util;
 
 import io.github.pitzzahh.util.utilities.classes.DynamicArray;
-
-import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
 import javafx.animation.PauseTransition;
 import io.github.pitzzahh.atm.Atm;
