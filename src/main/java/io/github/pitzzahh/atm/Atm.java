@@ -1,5 +1,6 @@
 package io.github.pitzzahh.atm;
 
+import io.github.pitzzahh.atm.util.Util;
 import io.github.pitzzahh.util.utilities.classes.enums.Gender;
 import io.github.pitzzahh.util.utilities.classes.Person;
 import io.github.pitzzahh.atm.service.AtmService;
@@ -24,29 +25,17 @@ public class Atm extends Application {
     private static AtmService service;
     private static final Logger LOGGER = LoggerFactory.getLogger(Atm.class);
 
-    private double horizontal = 0;
-    private double vertical = 0;
-
     private static Stage stage;
     @Override
     public void start(Stage stage) throws IOException {
         var mainPage = (Parent) FXMLLoader.load(requireNonNull(Atm.class.getResource("mainPage.fxml")));
         var scene = new Scene(mainPage);
         Atm.stage = stage;
-        Atm.stage.initStyle(StageStyle.UNDECORATED);
-        Atm.stage.getIcons().add(new Image(requireNonNull(Atm.class.getResourceAsStream("img/loginPage/logo.png"), "logo not found")));
-        mainPage.setOnMousePressed(event -> {
-            horizontal = event.getSceneX();
-            vertical = event.getSceneY();
-        });
-
-        mainPage.setOnMouseDragged(event -> {
-            Atm.stage.setX(event.getScreenX() - horizontal);
-            Atm.stage.setY(event.getScreenY() - vertical);
-        });
-
-        Atm.stage.setScene(scene);
-        Atm.stage.show();
+        getStage().initStyle(StageStyle.UNDECORATED);
+        getStage().getIcons().add(new Image(requireNonNull(Atm.class.getResourceAsStream("img/loginPage/logo.png"), "logo not found")));
+        Util.moveWindow(mainPage);
+        getStage().setScene(scene);
+        getStage().show();
         LOGGER.info("Application started");
     }
 
