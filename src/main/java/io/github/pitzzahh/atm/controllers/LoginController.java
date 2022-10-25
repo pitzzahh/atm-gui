@@ -1,11 +1,20 @@
 package io.github.pitzzahh.atm.controllers;
 
+import io.github.pitzzahh.util.utilities.SecurityUtil;
 import static io.github.pitzzahh.atm.Atm.getLogger;
 import io.github.pitzzahh.atm.validator.Validator;
+import static java.util.Objects.requireNonNull;
+import io.github.pitzzahh.atm.util.Util;
 import javafx.scene.control.TextField;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
+import io.github.pitzzahh.atm.Atm;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import java.io.IOException;
+import javafx.scene.Scene;
 import javafx.fxml.FXML;
 
 /**
@@ -25,24 +34,38 @@ public class LoginController {
      * @param keyEvent the key event.
      */
     @FXML
-    public void onEnter(KeyEvent keyEvent) {
+    public void onEnter(KeyEvent keyEvent) throws IOException {
         if (keyEvent.getCode() == KeyCode.ENTER) {
-            getLogger().info("Enter key pressed");
-            check();
+            getLogger().debug("Enter key pressed");
+            checkCredential();
         }
     }
 
     /**
      * Checks if the account number entered exists in the database as an account.
      */
-    private void check() {
+    private void checkCredential() throws IOException {
         try {
-            var doesAccountExist = Validator.doesAccountExist(accountNumberField.getText());
-            var exist = "";
-            if (doesAccountExist) exist = "Account exists";
-            else exist = "Account does not exist";
-            message.setText(exist);
-            getLogger().debug(exist);
+            final var fieldText = accountNumberField.getText();
+            final var $admin = SecurityUtil.decrypt("QGRtMW4xJHRyNHQwcg==");
+            var m = "";
+            getLogger().debug("Admin account number: {}", $admin);
+            if (fieldText.equals($admin)) {
+                var adminPage = (Parent) FXMLLoader.load(requireNonNull(Atm.class.getResource("adminPage.fxml")));
+                var scene = new Scene(adminPage);
+                Atm.getStage().close();
+                Util.moveWindow(adminPage);
+                Atm.getStage().setScene(scene);
+                Atm.getStage().show();
+                m = "Welcome admin!";
+            }
+            else {
+                var doesAccountExist = Validator.doesAccountExist(fieldText);
+                if (doesAccountExist) m = "Account exists";
+                else m = "Account does not exist";
+                message.setText(m);
+            }
+            getLogger().debug(m);
         } catch (RuntimeException runtimeException) {
             message.setText(runtimeException.getMessage());
             getLogger().error(runtimeException.getMessage());
@@ -61,4 +84,8 @@ public class LoginController {
         }
     }
 
+    public void onTextFieldChange(InputMethodEvent inputMethodEvent) {
+        inputMethodEvent.getComposed().stream().sorted().forEach(System.out::println);
+        getLogger().debug("TEXT FIELD CHANGED");
+    }
 }
