@@ -4,6 +4,7 @@ import io.github.pitzzahh.atm.util.Util;
 import io.github.pitzzahh.util.utilities.classes.enums.Gender;
 import io.github.pitzzahh.util.utilities.classes.Person;
 import io.github.pitzzahh.atm.service.AtmService;
+import static io.github.pitzzahh.atm.util.Util.getWindow;
 import static java.util.Objects.requireNonNull;
 import io.github.pitzzahh.atm.entity.Client;
 import io.github.pitzzahh.atm.dao.InMemory;
@@ -28,12 +29,13 @@ public class Atm extends Application {
     private static Stage stage;
     @Override
     public void start(Stage stage) throws IOException {
-        var mainPage = (Parent) FXMLLoader.load(requireNonNull(Atm.class.getResource("mainPage.fxml")));
-        var scene = new Scene(mainPage);
+        initParents();
+        var parent = getWindow("main_window");
+        var scene = new Scene(parent);
         Atm.stage = stage;
         getStage().initStyle(StageStyle.UNDECORATED);
         getStage().getIcons().add(new Image(requireNonNull(Atm.class.getResourceAsStream("img/loginPage/logo.png"), "logo not found")));
-        Util.moveWindow(mainPage);
+        Util.moveWindow(parent);
         getStage().setScene(scene);
         getStage().show();
         LOGGER.info("Application started");
@@ -58,7 +60,13 @@ public class Atm extends Application {
         );
         launch();
     }
-
+    private void initParents() throws IOException {
+        var mainPage = (Parent) FXMLLoader.load(requireNonNull(Atm.class.getResource("mainPage.fxml")));
+        var adminPage = (Parent) FXMLLoader.load(requireNonNull(Atm.class.getResource("adminPage.fxml")));
+        adminPage.setId("admin_window");
+        mainPage.setId("main_window");
+        Util.addParents(mainPage, adminPage);
+    }
     public static AtmService getService() {
         return service;
     }
