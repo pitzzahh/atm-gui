@@ -24,6 +24,10 @@ public interface Util {
         visiblePause.play();
     }
 
+    /**
+     * Moves the window to where the cursor dragged the window
+     * @param parent the parent node.
+     */
     static void moveWindow(Parent parent) {
         parent.setOnMousePressed(event -> {
             horizontal.set(event.getSceneX());
@@ -35,17 +39,30 @@ public interface Util {
         });
     }
 
+    /**
+     * Adds a parent to the parents array.
+     * @param parent the parent to add.
+     */
     static void addParent(Parent parent) {
         parents.insert(parent);
     }
 
+    /**
+     * Add a list parent to the parents array.
+     * @param p the list of parents.
+     */
     static void addParents(Parent... p) {
-        Arrays.stream(p).forEach(parents::insert);
+        parents.insert(p);
     }
 
-    static Parent getWindow(String name) {
+    /**
+     * Gets the parent with the specified id.
+     * @param id the id of the parent.
+     * @return the parent with the specified id.
+     */
+    static Parent getWindow(String id) {
         return parents.stream()
-                .filter(parent -> parent.getId().equals(name))
+                .filter(parent -> parent.getId().equals(id))
                 .findAny()
                 .orElse(parents.get(0));
     }
