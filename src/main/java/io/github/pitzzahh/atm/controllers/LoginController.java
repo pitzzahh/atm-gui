@@ -42,7 +42,7 @@ public class LoginController {
     /**
      * Checks if the account number entered exists in the database as an account.
      */
-    private void checkCredential() throws IOException {
+    private void checkCredential() {
         try {
             final var fieldText = accountNumberField.getText();
             final var $admin = SecurityUtil.decrypt("QGRtMW4xJHRyNHQwcg==");
