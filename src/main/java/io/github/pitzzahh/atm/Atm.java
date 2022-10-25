@@ -53,7 +53,7 @@ public class Atm extends Application {
         var scene = new Scene(parent);
         Atm.stage = primaryStage;
         getStage().initStyle(StageStyle.UNDECORATED);
-        getStage().getIcons().add(new Image(requireNonNull(Atm.class.getResourceAsStream("img/loginPage/logo.png"), "logo not found")));
+        getStage().getIcons().add(new Image(requireNonNull(Atm.class.getResourceAsStream("img/mainPage/logo.png"), "logo not found")));
         Util.moveWindow(parent);
         getStage().setScene(scene);
         getStage().show();
