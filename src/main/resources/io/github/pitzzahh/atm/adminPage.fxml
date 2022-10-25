@@ -50,9 +50,7 @@
                     </font>
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@img/adminPage/remove_user.png" />
-                            </image>
+                            <Image url="@img/adminPage/remove_user.png"/>
                         </ImageView>
                     </graphic>
                <VBox.margin>
