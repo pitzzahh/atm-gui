@@ -27,26 +27,26 @@ public class Atm extends Application {
     private double horizontal = 0;
     private double vertical = 0;
 
-    private Scene adminScene;
-    private Scene clientScene;
-
+    private static Stage stage;
     @Override
     public void start(Stage stage) throws IOException {
         var mainPage = (Parent) FXMLLoader.load(requireNonNull(Atm.class.getResource("mainPage.fxml")));
         var scene = new Scene(mainPage);
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.getIcons().add(new Image(requireNonNull(Atm.class.getResourceAsStream("img/logo.png"), "logo not found")));
+        Atm.stage = stage;
+        Atm.stage.initStyle(StageStyle.UNDECORATED);
+        Atm.stage.getIcons().add(new Image(requireNonNull(Atm.class.getResourceAsStream("img/loginPage/logo.png"), "logo not found")));
         mainPage.setOnMousePressed(event -> {
             horizontal = event.getSceneX();
             vertical = event.getSceneY();
         });
 
         mainPage.setOnMouseDragged(event -> {
-            stage.setX(event.getScreenX() - horizontal);
-            stage.setY(event.getScreenY() - vertical);
+            Atm.stage.setX(event.getScreenX() - horizontal);
+            Atm.stage.setY(event.getScreenY() - vertical);
         });
-        stage.setScene(scene);
-        stage.show();
+
+        Atm.stage.setScene(scene);
+        Atm.stage.show();
         LOGGER.info("Application started");
     }
 
@@ -75,5 +75,9 @@ public class Atm extends Application {
     }
     public static Logger getLogger() {
         return LOGGER;
+    }
+
+    public static Stage getStage() {
+        return stage;
     }
 }
