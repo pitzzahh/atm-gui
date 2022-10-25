@@ -38,3 +38,6 @@
     -fx-text-fill: #4f4d4d;
 }
 
+.progress-bar {
+    visibility: false;
+}

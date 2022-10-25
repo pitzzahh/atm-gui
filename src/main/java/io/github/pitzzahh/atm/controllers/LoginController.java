@@ -4,6 +4,7 @@ import static io.github.pitzzahh.atm.util.Util.getWindow;
 import io.github.pitzzahh.util.utilities.SecurityUtil;
 import static io.github.pitzzahh.atm.Atm.getLogger;
 import io.github.pitzzahh.atm.validator.Validator;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.input.InputMethodEvent;
 import io.github.pitzzahh.atm.util.Util;
 import javafx.scene.control.TextField;
@@ -19,6 +20,9 @@ import javafx.fxml.FXML;
  * @author pitzzahh
  */
 public class LoginController {
+
+    @FXML
+    public ProgressBar progressBar;
 
     @FXML
     private TextField accountNumberField;
