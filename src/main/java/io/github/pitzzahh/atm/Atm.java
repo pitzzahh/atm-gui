@@ -27,22 +27,24 @@ public class Atm extends Application {
     private double horizontal = 0;
     private double vertical = 0;
 
+    private Scene adminScene;
+    private Scene clientScene;
+
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(requireNonNull(Atm.class.getResource("login_page.fxml")));
-        var scene = new Scene(root);
+        var mainPage = (Parent) FXMLLoader.load(requireNonNull(Atm.class.getResource("mainPage.fxml")));
+        var scene = new Scene(mainPage);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.getIcons().add(new Image(requireNonNull(Atm.class.getResourceAsStream("img/logo.png"), "logo not found")));
-        root.setOnMousePressed(event -> {
+        mainPage.setOnMousePressed(event -> {
             horizontal = event.getSceneX();
             vertical = event.getSceneY();
         });
 
-        root.setOnMouseDragged(event -> {
+        mainPage.setOnMouseDragged(event -> {
             stage.setX(event.getScreenX() - horizontal);
             stage.setY(event.getScreenY() - vertical);
         });
-
         stage.setScene(scene);
         stage.show();
         LOGGER.info("Application started");

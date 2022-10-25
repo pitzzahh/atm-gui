@@ -1,0 +1,13 @@
+.topBox {
+    -fx-background-color: #006d77;
+}
+
+.leftBox {
+    -fx-background-color: #83c5be;
+}
+
+.add_client_button {
+    -fx-background-color: #043033;
+    -fx-font-size: 1.2em;
+    -fx-text-fill: #ffffff;
+}

@@ -14,7 +14,7 @@
    <center>
       <AnchorPane prefHeight="319.0" prefWidth="578.0" BorderPane.alignment="CENTER">
          <ImageView fitHeight="418.0" fitWidth="665.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@img/background_image.jpg" />
+            <Image url="@img/loginPage/background_image.jpg" />
          </ImageView>
          <Label alignment="TOP_CENTER" layoutX="149.0" layoutY="60.0" prefHeight="150.0" prefWidth="321.0" styleClass="main-label" stylesheets="@css/login_page.css" text="PUB ATM" textAlignment="CENTER" textFill="WHITE">
          </Label>
@@ -30,13 +30,13 @@
             <Label fx:id="message" alignment="CENTER" prefHeight="18.0" prefWidth="333.0" styleClass="message" />
          </HBox>
          <ImageView fitHeight="40.0" fitWidth="58.0" layoutX="523.0" layoutY="364.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@img/master_card_logo_100px.png" />
+            <Image url="@img/loginPage/master_card_logo_100px.png" />
          </ImageView>
          <ImageView fitHeight="40.0" fitWidth="58.0" layoutX="571.0" layoutY="364.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@img/visa_logo_100px.png" />
+            <Image url="@img/loginPage/visa_logo_100px.png" />
          </ImageView>
          <ImageView fitHeight="40.0" fitWidth="58.0" layoutX="476.0" layoutY="364.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@img/american_express_logo_100px.png" />
+            <Image url="@img/loginPage/american_express_logo_100px.png" />
          </ImageView>
       </AnchorPane>
    </center>
