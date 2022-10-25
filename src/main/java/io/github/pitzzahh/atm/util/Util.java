@@ -3,6 +3,7 @@ package io.github.pitzzahh.atm.util;
 import io.github.pitzzahh.util.utilities.classes.DynamicArray;
 import java.util.concurrent.atomic.AtomicReference;
 import javafx.animation.PauseTransition;
+import static java.lang.String.format;
 import io.github.pitzzahh.atm.Atm;
 import javafx.scene.control.Label;
 import javafx.scene.Parent;
@@ -62,7 +63,7 @@ public interface Util {
         return parents.stream()
                 .filter(parent -> parent.getId().equals(id))
                 .findAny()
-                .orElse(parents.get(0));
+                .orElseThrow(() -> new IllegalStateException(format("Cannot find parent with [%s] id", id)));
     }
 
 }
