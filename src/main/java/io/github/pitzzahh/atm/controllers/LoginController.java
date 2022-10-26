@@ -4,8 +4,10 @@ import static io.github.pitzzahh.atm.util.Util.getWindow;
 import io.github.pitzzahh.util.utilities.SecurityUtil;
 import static io.github.pitzzahh.atm.Atm.getLogger;
 import io.github.pitzzahh.atm.validator.Validator;
-import javafx.scene.control.ProgressBar;
+import io.github.pitzzahh.util.utilities.Print;
 import javafx.scene.input.InputMethodEvent;
+import javafx.scene.control.ProgressBar;
+import io.github.pitzzahh.atm.util.PBar;
 import io.github.pitzzahh.atm.util.Util;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
@@ -56,6 +58,7 @@ public class LoginController {
                 var scene = new Scene(adminWindow);
                 Atm.getStage().close();
                 Util.moveWindow(adminWindow);
+                PBar.showProgress(progressBar);
                 Atm.getStage().setScene(scene);
                 Atm.getStage().show();
                 debugMessage = "Welcome admin!";
@@ -86,7 +89,6 @@ public class LoginController {
     }
 
     public void onTextFieldChange(InputMethodEvent inputMethodEvent) {
-        inputMethodEvent.getComposed().stream().sorted().forEach(System.out::println);
         getLogger().debug("TEXT FIELD CHANGED");
     }
 }
