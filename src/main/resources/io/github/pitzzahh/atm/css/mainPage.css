@@ -7,6 +7,7 @@
 
 .main-label:hover {
     -fx-text-fill: #d4a373;
+    -fx-cursor: hand;
 }
 
 .subtitle {
@@ -35,7 +36,7 @@
 }
 
 .account-number-field:hover {
-    -fx-text-fill: #4f4d4d;
+    -fx-text-fill: #383434;
 }
 
 .progress-bar {
