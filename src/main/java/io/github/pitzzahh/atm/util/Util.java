@@ -4,6 +4,7 @@ import io.github.pitzzahh.util.utilities.classes.DynamicArray;
 import java.util.concurrent.atomic.AtomicReference;
 import javafx.animation.PauseTransition;
 import static java.lang.String.format;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Tooltip;
 import io.github.pitzzahh.atm.Atm;
 import javafx.scene.control.Label;
@@ -72,16 +73,15 @@ public interface Util {
     /**
      * Sets the tooltip for the specified control.
      * @param tip the tooltip.
-     * @param x the x offset where the tooltip will be show.
-     * @param y the y offset where the tooltip will be show.
+     * @param event the mouse event.
      * @return the tooltip.
      * @see Tooltip
      */
-    static Tooltip setToolTip(String tip, double x, double y, String font, int sizeOfFont) {
+    static Tooltip setToolTip(String tip, MouseEvent event, String font, int sizeOfFont) {
         var toolTip = new Tooltip(tip);
         toolTip.setFont(Font.font(font, sizeOfFont));
-        toolTip.setX(x);
-        toolTip.setY(y);
+        toolTip.setX(event.getScreenX());
+        toolTip.setY(event.getScreenY());
         return toolTip;
     }
 
