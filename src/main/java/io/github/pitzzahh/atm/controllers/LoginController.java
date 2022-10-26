@@ -1,10 +1,11 @@
 package io.github.pitzzahh.atm.controllers;
 
 import static io.github.pitzzahh.atm.Atm.getStage;
-import static io.github.pitzzahh.atm.util.Util.setToolTip;
+import static io.github.pitzzahh.atm.util.Util.initToolTip;
 import static io.github.pitzzahh.atm.util.Util.getWindow;
 import io.github.pitzzahh.util.utilities.SecurityUtil;
 import static io.github.pitzzahh.atm.Atm.getLogger;
+import java.util.concurrent.atomic.AtomicReference;
 import io.github.pitzzahh.atm.validator.Validator;
 import javafx.scene.control.ProgressBar;
 import io.github.pitzzahh.atm.util.PBar;
@@ -14,7 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
-import io.github.pitzzahh.atm.Atm;
+import javafx.util.Duration;
 import javafx.scene.Scene;
 import javafx.fxml.FXML;
 
@@ -52,25 +53,28 @@ public class LoginController {
         try {
             final var fieldText = accountNumberField.getText();
             final var $admin = SecurityUtil.decrypt("QGRtMW4xJHRyNHQwcg==");
-            var debugMessage = "";
+            var debugMessage = new AtomicReference<>("");
             getLogger().debug("Admin account number: {}", $admin);
             if (fieldText.equals($admin)) {
                 var adminWindow = getWindow("admin_window");
                 var scene = new Scene(adminWindow);
-                Atm.getStage().close();
-                Util.moveWindow(adminWindow);
-                PBar.showProgress(progressBar);
-                Atm.getStage().setScene(scene);
-                Atm.getStage().show();
-                debugMessage = "Welcome admin!";
+                var service = PBar.showProgressBar(progressBar);
+                service.setOnSucceeded(event -> {
+                    getStage().close();
+                    Util.moveWindow(adminWindow);
+                    getStage().setScene(scene);
+                    getStage().show();
+                    debugMessage.set("Welcome admin!");
+                });
+                service.start();
             }
             else {
                 var doesAccountExist = Validator.doesAccountExist(fieldText);
-                if (doesAccountExist) debugMessage = "Account exists";
-                else debugMessage = "Account does not exist";
-                message.setText(debugMessage);
+                if (doesAccountExist) debugMessage.set("Account exists");
+                else debugMessage.set("Account does not exist");
+                message.setText(debugMessage.get());
             }
-            getLogger().debug(debugMessage);
+            getLogger().debug(debugMessage.get());
         } catch (RuntimeException runtimeException) {
             message.setText(runtimeException.getMessage());
             getLogger().error(runtimeException.getMessage());
@@ -86,6 +90,7 @@ public class LoginController {
         if (accountNumberField.getText().isEmpty() && keyEvent.getCode() != KeyCode.ENTER) {
             getLogger().debug("EMPTY ACCOUNT NUMBER FIELD");
             message.setText("");
+            getLogger().debug("showing tooltip");
             accountNumberField.getTooltip().show(getStage());
         }
         else accountNumberField.getTooltip().hide();
@@ -98,15 +103,19 @@ public class LoginController {
     public void onMouseEntered(MouseEvent mouseEvent) {
         getLogger().debug("Mouse entered the account number field");
         var $an = accountNumberField.getText().trim();
-        var toolTip = setToolTip(
+        var toolTip = initToolTip(
                 "Enter your account number",
                 mouseEvent,
-                "JetBrains Mono",
-                15
+                "-fx-background-color: #CFD7DF; " +
+                        "-fx-text-fill: #D50000; " +
+                        "-fx-font-weight: bold; " +
+                        "-fx-font-family: Jetbrains Mono;" +
+                        "-fx-font-size: 15px;"
         );
         if ($an.isEmpty()) {
             getLogger().debug("Setting tooltip");
             accountNumberField.setTooltip(toolTip);
-        }
+            accountNumberField.getTooltip().setShowDuration(Duration.seconds(3));
+        } else accountNumberField.getTooltip().hide();
     }
 }
