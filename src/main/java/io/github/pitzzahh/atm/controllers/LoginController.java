@@ -1,15 +1,15 @@
 package io.github.pitzzahh.atm.controllers;
 
+import static io.github.pitzzahh.atm.util.Util.setToolTip;
 import static io.github.pitzzahh.atm.util.Util.getWindow;
 import io.github.pitzzahh.util.utilities.SecurityUtil;
 import static io.github.pitzzahh.atm.Atm.getLogger;
 import io.github.pitzzahh.atm.validator.Validator;
-import io.github.pitzzahh.util.utilities.Print;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.control.ProgressBar;
 import io.github.pitzzahh.atm.util.PBar;
 import io.github.pitzzahh.atm.util.Util;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
@@ -88,7 +88,26 @@ public class LoginController {
         }
     }
 
-    public void onTextFieldChange(InputMethodEvent inputMethodEvent) {
-        getLogger().debug("TEXT FIELD CHANGED");
+    /**
+     * Creates a simple tooltip when mouse is hovered over the account number field.
+     * @param mouseEvent the mouse event.
+     */
+    public void onMouseEntered(MouseEvent mouseEvent) {
+        getLogger().debug("Mouse entered the account number field");
+        var $an = accountNumberField.getText().trim();
+        getLogger().debug("Account number field is empty: {}", $an.isEmpty());
+        if ($an.isEmpty()) {
+            getLogger().debug("Setting tooltip");
+            var x = mouseEvent.getScreenX();
+            var y = mouseEvent.getScreenY();
+            var toolTip = setToolTip(
+                    "Enter your account number",
+                    x,
+                    y,
+                    "JetBrains Mono",
+                    15
+            );
+            accountNumberField.setTooltip(toolTip);
+        }
     }
 }
