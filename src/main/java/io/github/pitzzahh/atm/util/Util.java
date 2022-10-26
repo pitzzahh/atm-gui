@@ -6,8 +6,8 @@ import javafx.animation.PauseTransition;
 import static java.lang.String.format;
 import io.github.pitzzahh.atm.Atm;
 import javafx.scene.control.Label;
-import javafx.scene.Parent;
 import javafx.util.Duration;
+import javafx.scene.Parent;
 
 public interface Util {
 
