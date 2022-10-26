@@ -96,18 +96,19 @@ public class LoginController {
         getLogger().debug("Mouse entered the account number field");
         var $an = accountNumberField.getText().trim();
         getLogger().debug("Account number field is empty: {}", $an.isEmpty());
+        var x = mouseEvent.getScreenX();
+        var y = mouseEvent.getScreenY();
+        var toolTip = setToolTip(
+                "Enter your account number",
+                x,
+                y,
+                "JetBrains Mono",
+                15
+        );
         if ($an.isEmpty()) {
             getLogger().debug("Setting tooltip");
-            var x = mouseEvent.getScreenX();
-            var y = mouseEvent.getScreenY();
-            var toolTip = setToolTip(
-                    "Enter your account number",
-                    x,
-                    y,
-                    "JetBrains Mono",
-                    15
-            );
             accountNumberField.setTooltip(toolTip);
         }
+        else toolTip.hide();
     }
 }
