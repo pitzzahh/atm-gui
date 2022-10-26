@@ -4,8 +4,10 @@ import io.github.pitzzahh.util.utilities.classes.DynamicArray;
 import java.util.concurrent.atomic.AtomicReference;
 import javafx.animation.PauseTransition;
 import static java.lang.String.format;
+import javafx.scene.control.Tooltip;
 import io.github.pitzzahh.atm.Atm;
 import javafx.scene.control.Label;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 import javafx.scene.Parent;
 
@@ -64,6 +66,22 @@ public interface Util {
                 .filter(parent -> parent.getId().equals(id))
                 .findAny()
                 .orElseThrow(() -> new IllegalStateException(format("Cannot find parent with [%s] id", id)));
+    }
+
+    /**
+     * Sets the tooltip for the specified control.
+     * @param tip the tooltip.
+     * @param x the x offset where the tooltip will be show.
+     * @param y the y offset where the tooltip will be show.
+     * @return the tooltip.
+     * @see Tooltip
+     */
+    static Tooltip setToolTip(String tip, double x, double y, String font, int sizeOfFont) {
+        var toolTip = new Tooltip(tip);
+        toolTip.setFont(Font.font(font, sizeOfFont));
+        toolTip.setX(x);
+        toolTip.setY(y);
+        return toolTip;
     }
 
 }
