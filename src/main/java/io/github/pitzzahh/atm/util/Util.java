@@ -17,6 +17,7 @@ public interface Util {
     AtomicReference<Double> vertical = new AtomicReference<>(0.0);
     DynamicArray<Parent> parents = new DynamicArray<>();
 
+    @Deprecated(forRemoval = true)
     static void remove(Label label, Duration duration) {
         var visiblePause = new PauseTransition(duration);
         visiblePause.setOnFinished(
