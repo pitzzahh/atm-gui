@@ -21,7 +21,7 @@
          </Label>
          <Text fill="WHITE" fontSmoothingType="LCD" layoutX="183.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" style="fx-font-family: JetBrains Mono; -fx-font-size: 20px; -fx-text-fill: white; -fx-font-weight: bold;" text=" Pitzzahh United Bank" textAlignment="CENTER" wrappingWidth="253.896484375" />
          <HBox alignment="TOP_CENTER" layoutX="1.0" layoutY="218.0" prefHeight="62.0" prefWidth="618.0">
-            <TextField fx:id="accountNumberField" alignment="CENTER" onInputMethodTextChanged="#onTextFieldChange" onKeyPressed="#onEnter" onKeyTyped="#onKeyTyped" onMouseEntered="#onMouseEntered" prefHeight="55.0" prefWidth="433.0" styleClass="account-number-field" stylesheets="@css/mainPage.css">
+            <TextField fx:id="accountNumberField" alignment="CENTER" onKeyPressed="#onEnter" onKeyTyped="#onKeyTyped" onMouseEntered="#onMouseEntered" prefHeight="55.0" prefWidth="433.0" styleClass="account-number-field" stylesheets="@css/mainPage.css">
                <font>
                   <Font size="6.0" />
                </font>
