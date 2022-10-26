@@ -1,5 +1,6 @@
 package io.github.pitzzahh.atm.controllers;
 
+import static io.github.pitzzahh.atm.Atm.getStage;
 import static io.github.pitzzahh.atm.util.Util.setToolTip;
 import static io.github.pitzzahh.atm.util.Util.getWindow;
 import io.github.pitzzahh.util.utilities.SecurityUtil;
@@ -85,7 +86,9 @@ public class LoginController {
         if (accountNumberField.getText().isEmpty() && keyEvent.getCode() != KeyCode.ENTER) {
             getLogger().debug("EMPTY ACCOUNT NUMBER FIELD");
             message.setText("");
+            accountNumberField.getTooltip().show(getStage());
         }
+        else accountNumberField.getTooltip().hide();
     }
 
     /**
@@ -95,9 +98,6 @@ public class LoginController {
     public void onMouseEntered(MouseEvent mouseEvent) {
         getLogger().debug("Mouse entered the account number field");
         var $an = accountNumberField.getText().trim();
-        getLogger().debug("Account number field is empty: {}", $an.isEmpty());
-        var x = mouseEvent.getScreenX();
-        var y = mouseEvent.getScreenY();
         var toolTip = setToolTip(
                 "Enter your account number",
                 mouseEvent,
@@ -108,6 +108,5 @@ public class LoginController {
             getLogger().debug("Setting tooltip");
             accountNumberField.setTooltip(toolTip);
         }
-        else toolTip.hide();
     }
 }
