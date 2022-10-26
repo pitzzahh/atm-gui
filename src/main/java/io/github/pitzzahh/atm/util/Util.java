@@ -8,7 +8,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Tooltip;
 import io.github.pitzzahh.atm.Atm;
 import javafx.scene.control.Label;
-import javafx.scene.text.Font;
 import javafx.util.Duration;
 import javafx.scene.Parent;
 
@@ -77,11 +76,11 @@ public interface Util {
      * @return the tooltip.
      * @see Tooltip
      */
-    static Tooltip setToolTip(String tip, MouseEvent event, String font, int sizeOfFont) {
+    static Tooltip initToolTip(String tip, MouseEvent event, String styles) {
         var toolTip = new Tooltip(tip);
-        toolTip.setFont(Font.font(font, sizeOfFont));
         toolTip.setX(event.getScreenX());
         toolTip.setY(event.getScreenY());
+        toolTip.setStyle(styles);
         return toolTip;
     }
 
