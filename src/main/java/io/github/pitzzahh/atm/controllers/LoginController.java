@@ -100,8 +100,7 @@ public class LoginController {
         var y = mouseEvent.getScreenY();
         var toolTip = setToolTip(
                 "Enter your account number",
-                x,
-                y,
+                mouseEvent,
                 "JetBrains Mono",
                 15
         );
