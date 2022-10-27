@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="489.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.pitzzahh.atm.controllers.AdminController">
+<AnchorPane prefHeight="489.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.pitzzahh.atm.controllers.AdminController">
     <BorderPane layoutY="-2.0" prefHeight="495.0" prefWidth="800.0">
         <top>
           <HBox prefHeight="61.0" prefWidth="776.0" styleClass="topBox" stylesheets="@css/adminPage.css" BorderPane.alignment="CENTER" />
         </top>
         <left>
             <VBox prefHeight="345.0" prefWidth="158.0" styleClass="leftBox" stylesheets="@css/adminPage.css" BorderPane.alignment="CENTER">
-                <Button graphicTextGap="21.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="158.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" text="add clients" textAlignment="RIGHT">
+                <Button fx:id="addClients" graphicTextGap="21.0" mnemonicParsing="false" onMouseEntered="#onMouseEnteredAddClientsButton" prefHeight="32.0" prefWidth="158.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" text="add clients" textAlignment="RIGHT">
                     <font>
                         <Font size="1.0" />
                     </font>
@@ -26,7 +31,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </VBox.margin>
                 </Button>
-                <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="158.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" text="remove clients" textAlignment="RIGHT">
+                <Button fx:id="removeClients" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseEntered="#onMouseEnteredRemoveClientsButton" prefHeight="32.0" prefWidth="158.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" text="remove clients" textAlignment="RIGHT">
                     <font>
                         <Font size="1.0" />
                     </font>
@@ -39,7 +44,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </VBox.margin>
                 </Button>
-                <Button layoutX="15.0" layoutY="59.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="158.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" text="view all clients" textAlignment="RIGHT">
+                <Button fx:id="viewClients" layoutX="15.0" layoutY="59.0" mnemonicParsing="false" onMouseEntered="#onMouseEnteredViewClientsButton" prefHeight="32.0" prefWidth="158.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" text="view all clients" textAlignment="RIGHT">
                     <font>
                         <Font size="1.0" />
                     </font>
