@@ -84,4 +84,12 @@ public interface Util {
         return toolTip;
     }
 
+    static String adminButtonFunctionsToolTip() {
+        return "-fx-background-color: #003049; " +
+               "-fx-text-fill: white; " +
+               "-fx-font-weight: bold; " +
+               "-fx-font-family: Jetbrains Mono;" +
+               "-fx-font-size: 15px;";
+    }
+
 }
