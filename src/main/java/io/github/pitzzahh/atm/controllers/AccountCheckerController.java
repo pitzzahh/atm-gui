@@ -24,7 +24,7 @@ import javafx.fxml.FXML;
  * FXML Controller class
  * @author pitzzahh
  */
-public class LoginController {
+public class AccountCheckerController {
 
     @FXML
     public ProgressBar progressBar;
