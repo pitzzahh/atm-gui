@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="620.0" snapToPixel="false" styleClass="main-windows" stylesheets="@css/mainPage.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.pitzzahh.atm.controllers.AccountCheckerController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="620.0" snapToPixel="false" styleClass="main-windows" stylesheets="@css/mainPage.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.pitzzahh.atmGui.controllers.AccountCheckerController">
    <center>
       <AnchorPane prefHeight="412.0" prefWidth="625.0" styleClass="main-window" stylesheets="@css/mainPage.css" BorderPane.alignment="CENTER">
          <ImageView fitHeight="418.0" fitWidth="642.0" pickOnBounds="true" preserveRatio="true">
