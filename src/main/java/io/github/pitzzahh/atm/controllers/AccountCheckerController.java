@@ -15,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
+import javafx.stage.PopupWindow;
 import javafx.util.Duration;
 import java.util.Optional;
 import javafx.scene.Scene;
@@ -98,8 +99,8 @@ public class AccountCheckerController {
             Optional.ofNullable(accountNumberField.tooltipProperty().get())
                     .ifPresent(tooltip -> accountNumberField.getTooltip().show(getStage()));
         }
-        else Optional.ofNullable(accountNumberField.tooltipProperty().get())
-                .ifPresent(tooltip -> accountNumberField.getTooltip().hide());
+        else Optional.ofNullable(accountNumberField.getTooltip())
+                .ifPresent(PopupWindow::hide);
     }
 
     /**
@@ -117,8 +118,8 @@ public class AccountCheckerController {
                 toolTip.setShowDuration(Duration.seconds(3));
                 accountNumberField.setTooltip(toolTip);
             }
-        } else Optional.ofNullable(accountNumberField.tooltipProperty().get())
-                    .ifPresent(tooltip -> accountNumberField.getTooltip().hide());
+        } else Optional.ofNullable(accountNumberField.getTooltip())
+                    .ifPresent(PopupWindow::hide);
     }
 
     /**
