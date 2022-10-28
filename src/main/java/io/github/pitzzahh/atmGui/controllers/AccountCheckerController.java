@@ -1,13 +1,13 @@
 package io.github.pitzzahh.atmGui.controllers;
 
 import static io.github.pitzzahh.atmGui.Atm.getLogger;
-import java.util.concurrent.atomic.AtomicReference;
 import static io.github.pitzzahh.atmGui.Atm.getStage;
 import io.github.pitzzahh.atmGui.validator.Validator;
 import static io.github.pitzzahh.atmGui.util.Util.*;
-import javafx.scene.control.ProgressBar;
+import java.util.concurrent.atomic.AtomicReference;
 import io.github.pitzzahh.atmGui.util.PBar;
 import io.github.pitzzahh.atmGui.util.Util;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.stage.PopupWindow;
 import javafx.util.Duration;
+import javafx.stage.Stage;
 import java.util.Optional;
 import javafx.scene.Scene;
 import javafx.fxml.FXML;
@@ -34,6 +35,8 @@ public class AccountCheckerController {
 
     @FXML
     private Label message;
+
+    private Stage stage;
 
     /**
      * Checks if the Enter key is pressed and invokes the check() method.
@@ -57,12 +60,13 @@ public class AccountCheckerController {
             var debugMessage = new AtomicReference<>("");
             getLogger().debug("Admin account number: {}", $admin);
             if (fieldText.equals($admin)) {
-                var adminWindow = getWindow("admin_window");
-                var scene = new Scene(adminWindow);
                 var service = PBar.showProgressBar(progressBar);
                 service.setOnSucceeded(event -> {
+                    var adminWindow = getWindow("admin_window");
                     getStage().close();
                     Util.moveWindow(adminWindow);
+                    if (adminWindow.getScene() != null) getStage().setScene(adminWindow.getScene());
+                    else getStage().setScene(new Scene(adminWindow));
                     getStage().setTitle("Administrator");
                     getStage().setResizable(true);
                     getStage().show();
@@ -99,7 +103,7 @@ public class AccountCheckerController {
             message.setText("");
             getLogger().debug("showing tooltip");
             Optional.ofNullable(accountNumberField.tooltipProperty().get())
-                    .ifPresent(tooltip -> accountNumberField.getTooltip().show(getStage()));
+                    .ifPresent(tooltip -> accountNumberField.getTooltip().show(stage));
         }
         else Optional.ofNullable(accountNumberField.getTooltip())
                 .ifPresent(PopupWindow::hide);
@@ -110,6 +114,7 @@ public class AccountCheckerController {
      * @param mouseEvent the mouse event.
      */
     public void onMouseEntered(MouseEvent mouseEvent) {
+        if (stage != null) stage = (Stage) accountNumberField.getScene().getWindow();
         getLogger().debug("Mouse entered the account number field");
         var $an = accountNumberField.getText().trim();
         var optionalTooltip = Optional.ofNullable(accountNumberField.getTooltip());

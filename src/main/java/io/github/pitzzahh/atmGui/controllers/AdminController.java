@@ -1,11 +1,11 @@
 package io.github.pitzzahh.atmGui.controllers;
 
+import static io.github.pitzzahh.atmGui.Atm.getLogger;
 import static io.github.pitzzahh.atmGui.Atm.getStage;
 import static io.github.pitzzahh.atmGui.util.Util.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Button;
 import javafx.util.Duration;
-import javafx.scene.Scene;
 import javafx.fxml.FXML;
 
 public class AdminController {
@@ -50,12 +50,10 @@ public class AdminController {
     }
 
     public void onLogout(MouseEvent mouseEvent) {
-        getStage().close();
         var mainWindow = getWindow("main_window");
-        var scene = new Scene(mainWindow);
-        getStage().getScene().setRoot(scene.getRoot());
-        getStage().setScene(scene);
+        getLogger().debug("Loading main window");
         getStage().setTitle("ATM");
+        getStage().setScene(mainWindow.getScene());
         getStage().show();
     }
 }
