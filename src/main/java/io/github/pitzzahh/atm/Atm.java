@@ -1,9 +1,9 @@
 package io.github.pitzzahh.atm;
 
 import io.github.pitzzahh.util.utilities.classes.enums.Gender;
+import static io.github.pitzzahh.atm.util.Util.getWindow;
 import io.github.pitzzahh.util.utilities.classes.Person;
 import io.github.pitzzahh.atm.service.AtmService;
-import static io.github.pitzzahh.atm.util.Util.getWindow;
 import static java.util.Objects.requireNonNull;
 import io.github.pitzzahh.atm.entity.Client;
 import io.github.pitzzahh.atm.dao.InMemory;
@@ -52,10 +52,13 @@ public class Atm extends Application {
         var parent = getWindow("main_window");
         var scene = new Scene(parent);
         Atm.stage = primaryStage;
-        getStage().initStyle(StageStyle.UNDECORATED);
+        getStage().setResizable(false);
+        getStage().initStyle(StageStyle.DECORATED);
         getStage().getIcons().add(new Image(requireNonNull(Atm.class.getResourceAsStream("img/mainPage/logo.png"), "logo not found")));
         Util.moveWindow(parent);
         getStage().setScene(scene);
+        getStage().centerOnScreen();
+        getStage().setTitle("ATM");
         getStage().show();
         LOGGER.info("Application started");
     }

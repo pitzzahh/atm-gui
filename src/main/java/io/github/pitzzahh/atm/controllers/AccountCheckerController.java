@@ -66,6 +66,8 @@ public class AccountCheckerController {
                     getStage().close();
                     Util.moveWindow(adminWindow);
                     getStage().setScene(scene);
+                    getStage().centerOnScreen();
+                    getStage().setTitle("Administrator");
                     getStage().show();
                     debugMessage.set("Welcome admin!");
                 });
