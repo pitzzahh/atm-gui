@@ -1,10 +1,11 @@
 package io.github.pitzzahh.atm.controllers;
 
-import static io.github.pitzzahh.atm.util.Util.adminButtonFunctionsToolTip;
-import static io.github.pitzzahh.atm.util.Util.initToolTip;
+import static io.github.pitzzahh.atm.Atm.getStage;
+import static io.github.pitzzahh.atm.util.Util.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Button;
 import javafx.util.Duration;
+import javafx.scene.Scene;
 import javafx.fxml.FXML;
 
 public class AdminController {
@@ -46,5 +47,15 @@ public class AdminController {
         );
         tooltip.setShowDuration(Duration.seconds(3));
         viewClients.setTooltip(tooltip);
+    }
+
+    public void onLogout(MouseEvent mouseEvent) {
+        getStage().close();
+        var mainWindow = getWindow("main_window");
+        var scene = new Scene(mainWindow);
+        getStage().getScene().setRoot(scene.getRoot());
+        getStage().setScene(scene);
+        getStage().setTitle("ATM");
+        getStage().show();
     }
 }
