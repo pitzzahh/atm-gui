@@ -19,13 +19,13 @@
         <dependency>
             <groupId>io.github.pitzzahh</groupId>
             <artifactId>automated-teller-machine-API</artifactId>
-            <version>1.0.4</version>
+            <version>1.0.5</version>
         </dependency>
 
         <dependency>
             <groupId>io.github.pitzzahh</groupId>
             <artifactId>util-classes</artifactId>
-            <version>1.0.11</version>
+            <version>1.0.13</version>
         </dependency>
 
         <dependency>
@@ -136,7 +136,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>io.github.pitzzahh.atm/io.github.pitzzahh.atm.Atm</mainClass>
+                            <mainClass>io.github.pitzzahh.atm/io.github.pitzzahh.atmGui.Atm</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
