@@ -90,8 +90,8 @@ public interface Util {
     static void addTextLimiter(final TextField textField, final int maxLength) {
         textField.textProperty().addListener((observableValue, oldValue, newValue) -> {
             Atm.getLogger().debug($admin.substring(0, maxLength));
-            var limitedInput = textField.getText().substring(0, maxLength);
             if ((textField.getText().length() > maxLength)) {
+                var limitedInput = textField.getText().substring(0, maxLength);
                 if (!limitedInput.equals($admin.substring(0, maxLength))) textField.setText(limitedInput);
             }
         });
