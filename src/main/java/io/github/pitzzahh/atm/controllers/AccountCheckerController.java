@@ -1,6 +1,5 @@
 package io.github.pitzzahh.atm.controllers;
 
-import io.github.pitzzahh.util.utilities.SecurityUtil;
 import static io.github.pitzzahh.atm.Atm.getLogger;
 import java.util.concurrent.atomic.AtomicReference;
 import static io.github.pitzzahh.atm.Atm.getStage;
@@ -55,7 +54,6 @@ public class AccountCheckerController {
     private void checkCredential() {
         try {
             final var fieldText = accountNumberField.getText();
-            final var $admin = SecurityUtil.decrypt("QGRtMW4xJHRyNHQwcg==");
             var debugMessage = new AtomicReference<>("");
             getLogger().debug("Admin account number: {}", $admin);
             if (fieldText.equals($admin)) {
@@ -65,10 +63,11 @@ public class AccountCheckerController {
                 service.setOnSucceeded(event -> {
                     getStage().close();
                     Util.moveWindow(adminWindow);
-                    getStage().setScene(scene);
-                    getStage().centerOnScreen();
                     getStage().setTitle("Administrator");
+                    getStage().setResizable(true);
                     getStage().show();
+                    accountNumberField.clear();
+                    accountNumberField.setVisible(true);
                     debugMessage.set("Welcome admin!");
                 });
                 service.start();
@@ -94,6 +93,7 @@ public class AccountCheckerController {
      */
     @FXML
     public void onKeyTyped(KeyEvent keyEvent) {
+        addTextLimiter(accountNumberField, 9);
         if (accountNumberField.getText().isEmpty() && keyEvent.getCode() != KeyCode.ENTER) {
             getLogger().debug("EMPTY ACCOUNT NUMBER FIELD");
             message.setText("");
@@ -112,16 +112,18 @@ public class AccountCheckerController {
     public void onMouseEntered(MouseEvent mouseEvent) {
         getLogger().debug("Mouse entered the account number field");
         var $an = accountNumberField.getText().trim();
+        var optionalTooltip = Optional.ofNullable(accountNumberField.getTooltip());
         if ($an.isEmpty()) {
-            var isPresent = Optional.ofNullable(accountNumberField.getTooltip());
-            if (isPresent.isEmpty()) {
+            if (optionalTooltip.isEmpty()) {
                 getLogger().debug("Setting tooltip");
                 var toolTip = getFieldToolTip(mouseEvent);
                 toolTip.setShowDuration(Duration.seconds(3));
                 accountNumberField.setTooltip(toolTip);
             }
-        } else Optional.ofNullable(accountNumberField.getTooltip())
-                    .ifPresent(PopupWindow::hide);
+        } else if (optionalTooltip.isPresent()) {
+            getLogger().debug("Hiding tooltip");
+            accountNumberField.getTooltip().hide();
+        }
     }
 
     /**
