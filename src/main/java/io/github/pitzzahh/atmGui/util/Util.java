@@ -8,7 +8,6 @@ import javafx.scene.control.TextField;
 import static java.lang.String.format;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Tooltip;
-import io.github.pitzzahh.atmGui.Atm;
 import javafx.scene.Parent;
 
 /**
@@ -16,7 +15,9 @@ import javafx.scene.Parent;
  */
 public interface Util {
 
-
+    /**
+     * admin credentials.
+     */
     String $admin = SecurityUtil.decrypt("QGRtMW4xJHRyNHQwcg==");
 
     /**
@@ -89,7 +90,6 @@ public interface Util {
 
     static void addTextLimiter(final TextField textField, final int maxLength) {
         textField.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            Atm.getLogger().debug($admin.substring(0, maxLength));
             if ((textField.getText().length() > maxLength)) {
                 var limitedInput = textField.getText().substring(0, maxLength);
                 if (!limitedInput.equals($admin.substring(0, maxLength))) textField.setText(limitedInput);
@@ -97,6 +97,13 @@ public interface Util {
         });
     }
 }
+
+/**
+ * Fields for the Util interface.
+ */
 class Fields {
+    /**
+     * The parents array.
+     */
     static DynamicArray<Parent> parents = new DynamicArray<>();
 }
