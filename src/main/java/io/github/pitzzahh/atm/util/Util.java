@@ -3,12 +3,9 @@ package io.github.pitzzahh.atm.util;
 import io.github.pitzzahh.util.utilities.classes.DynamicArray;
 import java.util.concurrent.atomic.AtomicReference;
 import static io.github.pitzzahh.atm.Atm.getStage;
-import javafx.animation.PauseTransition;
 import static java.lang.String.format;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Tooltip;
-import javafx.scene.control.Label;
-import javafx.util.Duration;
 import javafx.scene.Parent;
 
 /**
@@ -19,15 +16,6 @@ public interface Util {
     AtomicReference<Double> horizontal = new AtomicReference<>(0.0);
     AtomicReference<Double> vertical = new AtomicReference<>(0.0);
     DynamicArray<Parent> parents = new DynamicArray<>();
-
-    @Deprecated(forRemoval = true)
-    static void remove(Label label, Duration duration) {
-        var visiblePause = new PauseTransition(duration);
-        visiblePause.setOnFinished(
-                event -> label.setVisible(false)
-        );
-        visiblePause.play();
-    }
 
     /**
      * Moves the window to where the cursor dragged the window
