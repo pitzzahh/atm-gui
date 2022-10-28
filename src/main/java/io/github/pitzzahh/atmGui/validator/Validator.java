@@ -1,8 +1,8 @@
-package io.github.pitzzahh.atm.validator;
+package io.github.pitzzahh.atmGui.validator;
 
 import static io.github.pitzzahh.util.utilities.validation.Validator.isWholeNumber;
 import io.github.pitzzahh.atm.entity.Client;
-import io.github.pitzzahh.atm.Atm;
+import io.github.pitzzahh.atmGui.Atm;
 
 public final class Validator {
 

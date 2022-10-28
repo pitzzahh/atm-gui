@@ -1,13 +1,13 @@
-package io.github.pitzzahh.atm.controllers;
+package io.github.pitzzahh.atmGui.controllers;
 
-import static io.github.pitzzahh.atm.Atm.getLogger;
+import static io.github.pitzzahh.atmGui.Atm.getLogger;
 import java.util.concurrent.atomic.AtomicReference;
-import static io.github.pitzzahh.atm.Atm.getStage;
-import io.github.pitzzahh.atm.validator.Validator;
-import static io.github.pitzzahh.atm.util.Util.*;
+import static io.github.pitzzahh.atmGui.Atm.getStage;
+import io.github.pitzzahh.atmGui.validator.Validator;
+import static io.github.pitzzahh.atmGui.util.Util.*;
 import javafx.scene.control.ProgressBar;
-import io.github.pitzzahh.atm.util.PBar;
-import io.github.pitzzahh.atm.util.Util;
+import io.github.pitzzahh.atmGui.util.PBar;
+import io.github.pitzzahh.atmGui.util.Util;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;

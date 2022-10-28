@@ -1,4 +1,4 @@
-package io.github.pitzzahh.atm;
+package io.github.pitzzahh.atmGui;
 
 import io.github.pitzzahh.util.utilities.classes.enums.Gender;
 import static io.github.pitzzahh.atm.util.Util.getWindow;

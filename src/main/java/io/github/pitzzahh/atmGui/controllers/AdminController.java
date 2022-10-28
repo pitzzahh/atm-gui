@@ -1,6 +1,6 @@
-package io.github.pitzzahh.atm.controllers;
+package io.github.pitzzahh.atmGui.controllers;
 
-import static io.github.pitzzahh.atm.Atm.getStage;
+import static io.github.pitzzahh.atmGui.Atm.getStage;
 import static io.github.pitzzahh.atm.util.Util.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Button;

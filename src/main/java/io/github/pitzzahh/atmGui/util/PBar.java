@@ -1,6 +1,6 @@
-package io.github.pitzzahh.atm.util;
+package io.github.pitzzahh.atmGui.util;
 
-import static io.github.pitzzahh.atm.Atm.getLogger;
+import static io.github.pitzzahh.atmGui.Atm.getLogger;
 import javafx.scene.control.ProgressBar;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;

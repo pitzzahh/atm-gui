@@ -1,14 +1,14 @@
-package io.github.pitzzahh.atm.util;
+package io.github.pitzzahh.atmGui.util;
 
 import io.github.pitzzahh.util.utilities.classes.DynamicArray;
 import io.github.pitzzahh.util.utilities.SecurityUtil;
 import java.util.concurrent.atomic.AtomicReference;
-import static io.github.pitzzahh.atm.Atm.getStage;
+import static io.github.pitzzahh.atmGui.Atm.getStage;
 import javafx.scene.control.TextField;
 import static java.lang.String.format;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Tooltip;
-import io.github.pitzzahh.atm.Atm;
+import io.github.pitzzahh.atmGui.Atm;
 import javafx.scene.Parent;
 
 /**
