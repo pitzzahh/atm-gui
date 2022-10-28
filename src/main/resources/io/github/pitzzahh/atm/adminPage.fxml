@@ -57,7 +57,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
                 </Button>
-                <Button layoutX="10.0" layoutY="98.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="158.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" text="view all clients" textAlignment="RIGHT">
+                <Button layoutX="10.0" layoutY="98.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="148.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" text="manage locked accounts" textAlignment="RIGHT" wrapText="true">
                     <font>
                         <Font size="1.0" />
                     </font>
@@ -72,6 +72,18 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </VBox.margin>
                 </Button>
+            <Button layoutX="15.0" layoutY="147.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="148.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" textAlignment="RIGHT" wrapText="true">
+               <font>
+                  <Font size="1.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/adminPage/remove_user.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             </VBox>
         </left>
         <center>
