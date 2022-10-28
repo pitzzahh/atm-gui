@@ -1,7 +1,7 @@
 package io.github.pitzzahh.atmGui.controllers;
 
 import static io.github.pitzzahh.atmGui.Atm.getStage;
-import static io.github.pitzzahh.atm.util.Util.*;
+import static io.github.pitzzahh.atmGui.util.Util.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Button;
 import javafx.util.Duration;
