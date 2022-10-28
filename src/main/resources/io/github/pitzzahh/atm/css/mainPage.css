@@ -7,6 +7,7 @@
 
 .main-label:hover {
     -fx-text-fill: #d4a373;
+    -fx-cursor: hand;
 }
 
 .subtitle {
@@ -29,15 +30,15 @@
     -fx-text-fill: transparent;
     -fx-background-color: transparent;
     -fx-font-weight: bold;
-    -fx-border-radius: 50px;
-    -fx-border-color: #2c4642;
-    -fx-border-width: 1px;
+    -fx-border-color: transparent transparent #2c4642 transparent;
+    -fx-border-width: 0 0 2 0;
 }
 
 .account-number-field:hover {
-    -fx-text-fill: #4f4d4d;
+    -fx-text-fill: #383434;
 }
 
 .progress-bar {
     visibility: false;
+    -fx-background-color: #138370;
 }
