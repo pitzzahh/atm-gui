@@ -18,7 +18,7 @@
         </top>
         <left>
             <VBox prefHeight="546.0" prefWidth="200.0" styleClass="leftBox" stylesheets="@css/adminPage.css" BorderPane.alignment="CENTER">
-                <Button fx:id="addClients" graphicTextGap="21.0" mnemonicParsing="false" onMouseEntered="#onMouseEnteredAddClientsButton" prefHeight="60.0" prefWidth="196.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" text="add clients" textAlignment="RIGHT" wrapText="true">
+                <Button fx:id="addClients" graphicTextGap="21.0" mnemonicParsing="false" onMouseEntered="#onMouseEnteredAddClientsButton" prefHeight="41.0" prefWidth="190.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" text="add clients" textAlignment="RIGHT" wrapText="true">
                     <font>
                         <Font size="1.0" />
                     </font>
@@ -77,6 +77,19 @@
                <graphic>
                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                        <Image url="@img/adminPage/manage_loans.png" />
+                   </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </Button>
+            <Button graphicTextGap="5.0" layoutX="15.0" layoutY="335.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="192.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" text="logout" textAlignment="RIGHT" wrapText="true">
+               <font>
+                  <Font size="1.0" />
+               </font>
+               <graphic>
+                   <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                       <Image url="@img/adminPage/logout.png"/>
                    </ImageView>
                </graphic>
                <VBox.margin>
