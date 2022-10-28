@@ -1,13 +1,13 @@
 package io.github.pitzzahh.atmGui;
 
 import io.github.pitzzahh.util.utilities.classes.enums.Gender;
-import static io.github.pitzzahh.atm.util.Util.getWindow;
+import static io.github.pitzzahh.atmGui.util.Util.getWindow;
 import io.github.pitzzahh.util.utilities.classes.Person;
 import io.github.pitzzahh.atm.service.AtmService;
 import static java.util.Objects.requireNonNull;
 import io.github.pitzzahh.atm.entity.Client;
 import io.github.pitzzahh.atm.dao.InMemory;
-import io.github.pitzzahh.atm.util.Util;
+import io.github.pitzzahh.atmGui.util.Util;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.StageStyle;
