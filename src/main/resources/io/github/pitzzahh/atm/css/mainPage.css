@@ -40,4 +40,5 @@
 
 .progress-bar {
     visibility: false;
+    -fx-background-color: #138370;
 }
