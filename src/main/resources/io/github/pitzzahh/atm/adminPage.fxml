@@ -11,19 +11,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="489.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.pitzzahh.atm.controllers.AdminController">
-    <BorderPane layoutY="-2.0" prefHeight="495.0" prefWidth="800.0">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.pitzzahh.atm.controllers.AdminController">
+    <BorderPane layoutY="-2.0" prefHeight="607.0" prefWidth="1000.0">
         <top>
           <HBox prefHeight="61.0" prefWidth="776.0" styleClass="topBox" stylesheets="@css/adminPage.css" BorderPane.alignment="CENTER" />
         </top>
         <left>
-            <VBox prefHeight="345.0" prefWidth="158.0" styleClass="leftBox" stylesheets="@css/adminPage.css" BorderPane.alignment="CENTER">
-                <Button fx:id="addClients" graphicTextGap="21.0" mnemonicParsing="false" onMouseEntered="#onMouseEnteredAddClientsButton" prefHeight="32.0" prefWidth="158.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" text="add clients" textAlignment="RIGHT">
+            <VBox prefHeight="546.0" prefWidth="200.0" styleClass="leftBox" stylesheets="@css/adminPage.css" BorderPane.alignment="CENTER">
+                <Button fx:id="addClients" graphicTextGap="21.0" mnemonicParsing="false" onMouseEntered="#onMouseEnteredAddClientsButton" prefHeight="60.0" prefWidth="196.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" text="add clients" textAlignment="RIGHT" wrapText="true">
                     <font>
                         <Font size="1.0" />
                     </font>
                     <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                             <Image url="@img/adminPage/add_client.png" />
                         </ImageView>
                     </graphic>
@@ -31,58 +31,57 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </VBox.margin>
                 </Button>
-                <Button fx:id="removeClients" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseEntered="#onMouseEnteredRemoveClientsButton" prefHeight="32.0" prefWidth="158.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" text="remove clients" textAlignment="RIGHT">
+                <Button fx:id="removeClients" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseEntered="#onMouseEnteredRemoveClientsButton" prefHeight="34.0" prefWidth="191.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" text="remove clients" textAlignment="RIGHT" wrapText="true">
                     <font>
                         <Font size="1.0" />
                     </font>
                     <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                            <Image url="@img/adminPage/remove_user.png" />
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@img/adminPage/remove_client.png" />
                         </ImageView>
                     </graphic>
                     <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </VBox.margin>
                 </Button>
-                <Button fx:id="viewClients" layoutX="15.0" layoutY="59.0" mnemonicParsing="false" onMouseEntered="#onMouseEnteredViewClientsButton" prefHeight="32.0" prefWidth="158.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" text="view all clients" textAlignment="RIGHT">
+                <Button fx:id="viewClients" layoutX="15.0" layoutY="59.0" mnemonicParsing="false" onMouseEntered="#onMouseEnteredViewClientsButton" prefHeight="34.0" prefWidth="195.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" text="view all clients" textAlignment="RIGHT" wrapText="true">
                     <font>
                         <Font size="1.0" />
                     </font>
                     <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                            <Image url="@img/adminPage/remove_user.png" />
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@img/adminPage/view_clients.png" />
                         </ImageView>
                     </graphic>
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
                 </Button>
-                <Button layoutX="10.0" layoutY="98.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="148.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" text="manage locked accounts" textAlignment="RIGHT" wrapText="true">
+                <Button layoutX="10.0" layoutY="98.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="193.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" text="manage locked accounts" textAlignment="RIGHT" wrapText="true">
                     <font>
                         <Font size="1.0" />
                     </font>
                     <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@img/adminPage/remove_user.png" />
-                            </image>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@img/adminPage/manage_locked_accounts.png" />
                         </ImageView>
                     </graphic>
                     <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </VBox.margin>
                 </Button>
-            <Button layoutX="15.0" layoutY="147.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="148.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" textAlignment="RIGHT" wrapText="true">
+            <Button layoutX="15.0" layoutY="147.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="192.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" text="manage account loans" textAlignment="RIGHT" wrapText="true">
                <font>
                   <Font size="1.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/adminPage/remove_user.png" />
-                     </image>
-                  </ImageView>
+                   <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                       <Image url="@img/adminPage/manage_loans.png" />
+                   </ImageView>
                </graphic>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
             </Button>
             </VBox>
         </left>
