@@ -2,15 +2,18 @@ package io.github.pitzzahh.atm.util;
 
 import io.github.pitzzahh.util.utilities.classes.DynamicArray;
 import java.util.concurrent.atomic.AtomicReference;
+import static io.github.pitzzahh.atm.Atm.getStage;
 import javafx.animation.PauseTransition;
 import static java.lang.String.format;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Tooltip;
-import io.github.pitzzahh.atm.Atm;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
 import javafx.scene.Parent;
 
+/**
+ * Utility interface for the ATM application.
+ */
 public interface Util {
 
     AtomicReference<Double> horizontal = new AtomicReference<>(0.0);
@@ -36,8 +39,8 @@ public interface Util {
             vertical.set(event.getSceneY());
         });
         parent.setOnMouseDragged(event -> {
-            Atm.getStage().setX(event.getScreenX() - horizontal.get());
-            Atm.getStage().setY(event.getScreenY() - vertical.get());
+            getStage().setX(event.getScreenX() - horizontal.get());
+            getStage().setY(event.getScreenY() - vertical.get());
         });
     }
 
