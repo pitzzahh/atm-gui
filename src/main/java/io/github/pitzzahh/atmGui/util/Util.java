@@ -80,6 +80,10 @@ public interface Util {
         return toolTip;
     }
 
+    /**
+     * Gets the button styles for admin window
+     * @return styles for admin window buttons.
+     */
     static String adminButtonFunctionsToolTip() {
         return "-fx-background-color: #003049; " +
                "-fx-text-fill: white; " +
@@ -88,6 +92,11 @@ public interface Util {
                "-fx-font-size: 15px;";
     }
 
+    /**
+     * Adds a limit to the specified text field.
+     * @param textField the text field to add the limit.
+     * @param maxLength the maximum length of the text field.
+     */
     static void addTextLimiter(final TextField textField, final int maxLength) {
         textField.textProperty().addListener((observableValue, oldValue, newValue) -> {
             if ((textField.getText().length() > maxLength)) {
