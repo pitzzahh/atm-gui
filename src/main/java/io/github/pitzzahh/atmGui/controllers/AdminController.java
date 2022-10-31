@@ -53,6 +53,8 @@ public class AdminController {
         var mainWindow = getWindow("main_window");
         getLogger().debug("Loading main window");
         getStage().setTitle("ATM");
+        getStage().setResizable(false);
+        getStage().centerOnScreen();
         getStage().setScene(mainWindow.getScene());
         getStage().show();
     }
