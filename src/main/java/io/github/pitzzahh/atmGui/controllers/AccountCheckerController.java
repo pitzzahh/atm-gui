@@ -85,7 +85,6 @@ public class AccountCheckerController {
                     if (clientWindow.getScene() != null) getStage().setScene(clientWindow.getScene()); // if scene is present, get it
                     else getStage().setScene(new Scene(clientWindow)); // create new scene if new login
                     getStage().setTitle("Client");
-                    getStage().setResizable(true);
                     getStage().centerOnScreen();
                     getStage().show();
                     accountNumberField.clear();
