@@ -6,7 +6,6 @@ import io.github.pitzzahh.atmGui.validator.Validator;
 import static io.github.pitzzahh.atmGui.util.Util.*;
 import java.util.concurrent.atomic.AtomicReference;
 import io.github.pitzzahh.atmGui.util.PBar;
-import io.github.pitzzahh.atmGui.util.Util;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
@@ -14,7 +13,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
-import javafx.stage.PopupWindow;
 import javafx.util.Duration;
 import javafx.stage.Stage;
 import java.util.Optional;
@@ -64,11 +62,12 @@ public class AccountCheckerController {
                 service.setOnSucceeded(event -> {
                     var adminWindow = getWindow("admin_window");
                     getStage().close();
-                    Util.moveWindow(adminWindow);
-                    if (adminWindow.getScene() != null) getStage().setScene(adminWindow.getScene());
-                    else getStage().setScene(new Scene(adminWindow));
+                    moveWindow(adminWindow);
+                    if (adminWindow.getScene() != null) getStage().setScene(adminWindow.getScene()); // if scene is present, get it
+                    else getStage().setScene(new Scene(adminWindow)); // create new scene if new login
                     getStage().setTitle("Administrator");
                     getStage().setResizable(true);
+                    getStage().centerOnScreen();
                     getStage().show();
                     accountNumberField.clear();
                     accountNumberField.setVisible(true);
@@ -78,7 +77,20 @@ public class AccountCheckerController {
             }
             else {
                 var doesAccountExist = Validator.doesAccountExist(fieldText);
-                if (doesAccountExist) debugMessage.set("Account exists");
+                if (doesAccountExist) {
+                    debugMessage.set("Account exists");
+                    var clientWindow = getWindow("client_window");
+                    getStage().close();
+                    moveWindow(clientWindow);
+                    if (clientWindow.getScene() != null) getStage().setScene(clientWindow.getScene()); // if scene is present, get it
+                    else getStage().setScene(new Scene(clientWindow)); // create new scene if new login
+                    getStage().setTitle("Client");
+                    getStage().setResizable(true);
+                    getStage().centerOnScreen();
+                    getStage().show();
+                    accountNumberField.clear();
+                    accountNumberField.setVisible(true);
+                }
                 else debugMessage.set("Account does not exist");
                 message.setText(debugMessage.get());
                 accountNumberField.setVisible(true);
@@ -101,12 +113,7 @@ public class AccountCheckerController {
         if (accountNumberField.getText().isEmpty() && keyEvent.getCode() != KeyCode.ENTER) {
             getLogger().debug("EMPTY ACCOUNT NUMBER FIELD");
             message.setText("");
-            getLogger().debug("showing tooltip");
-            Optional.ofNullable(accountNumberField.tooltipProperty().get())
-                    .ifPresent(tooltip -> accountNumberField.getTooltip().show(stage));
         }
-        else Optional.ofNullable(accountNumberField.getTooltip())
-                .ifPresent(PopupWindow::hide);
     }
 
     /**
@@ -127,7 +134,7 @@ public class AccountCheckerController {
             }
         } else if (optionalTooltip.isPresent()) {
             getLogger().debug("Hiding tooltip");
-            accountNumberField.getTooltip().hide();
+            accountNumberField.setTooltip(null);
         }
     }
 
