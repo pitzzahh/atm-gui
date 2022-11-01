@@ -59,7 +59,7 @@ public class AccountCheckerController {
             getLogger().debug("Admin account number: {}", $admin);
             if (fieldText.equals($admin)) {
                 var service = PBar.showProgressBar(progressBar);
-                service.setOnSucceeded(event -> {
+                service.setOnSucceeded(stateEvent -> {
                     var adminWindow = getWindow("admin_window");
                     getStage().close();
                     moveWindow(adminWindow);
@@ -68,6 +68,11 @@ public class AccountCheckerController {
                     getStage().setTitle("Administrator");
                     getStage().setResizable(true);
                     getStage().centerOnScreen();
+                    getStage().addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+                        if (KeyCode.F11.equals(event.getCode())) {
+                            getStage().setFullScreen(!getStage().isFullScreen());
+                        }
+                    });
                     getStage().show();
                     accountNumberField.clear();
                     accountNumberField.setVisible(true);
