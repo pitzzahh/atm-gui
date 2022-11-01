@@ -2,12 +2,15 @@ package io.github.pitzzahh.atmGui.util;
 
 import io.github.pitzzahh.util.utilities.classes.DynamicArray;
 import io.github.pitzzahh.util.utilities.SecurityUtil;
-import java.util.concurrent.atomic.AtomicReference;
 import static io.github.pitzzahh.atmGui.Atm.getStage;
+import java.util.concurrent.atomic.AtomicReference;
 import javafx.scene.control.TextField;
 import static java.lang.String.format;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Tooltip;
+import javafx.scene.control.Button;
+import javafx.event.ActionEvent;
 import javafx.scene.Parent;
 
 /**
@@ -104,6 +107,16 @@ public interface Util {
                 if (!limitedInput.equals($admin.substring(0, maxLength))) textField.setText(limitedInput);
             }
         });
+    }
+
+    /**
+     * Sets the center border pane to the specific window.
+     * @param actionEvent the action event.
+     * @param id the id of the window.
+     */
+    static void setCenterScreenOfBorderPane(ActionEvent actionEvent, String id) {
+        ((BorderPane)(((Button) actionEvent.getSource()).getParent().getParent()))
+                .setCenter(Util.getWindow(id));
     }
 }
 

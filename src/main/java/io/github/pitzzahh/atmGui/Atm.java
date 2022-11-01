@@ -21,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import java.time.Month;
+import java.util.Arrays;
 
 /**
  * The main class of the application.
@@ -51,7 +52,18 @@ public class Atm extends Application {
         initParents();
         var parent = getWindow("main_window");
         var scene = new Scene(parent);
-        Atm.stage = primaryStage;
+        Arrays.stream(primaryStage.getClass()
+                .getDeclaredConstructors())
+                .filter(c -> c.getParameterTypes().length == 0)
+                .findAny()
+                .ifPresent(c -> {
+                    c.setAccessible(true);
+                    try {
+                        Atm.stage = (Stage) c.newInstance();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
         getStage().setResizable(false);
         getStage().initStyle(StageStyle.UNIFIED);
         getStage().getIcons().add(new Image(requireNonNull(Atm.class.getResourceAsStream("img/mainPage/logo.png"), "logo not found")));
@@ -69,7 +81,7 @@ public class Atm extends Application {
      */
     public static void main(String[] args) {
         service = new AtmService(new InMemory());
-        service.saveClient().apply(
+        getService().saveClient().apply(
                 new Client(
                         "123123123",
                         "123123",
@@ -93,13 +105,15 @@ public class Atm extends Application {
      * @throws IOException if the parent cannot be loaded.
      */
     private void initParents() throws IOException {
-        var mainPage = (Parent) FXMLLoader.load(requireNonNull(Atm.class.getResource("mainPage.fxml")));
-        var adminPage = (Parent) FXMLLoader.load(requireNonNull(Atm.class.getResource("adminPage.fxml")));
-        var clientPage = (Parent) FXMLLoader.load(requireNonNull(Atm.class.getResource("clientPage.fxml")));
+        var mainPage = (Parent) FXMLLoader.load(requireNonNull(Atm.class.getResource("fxml/mainPage.fxml")));
+        var adminPage = (Parent) FXMLLoader.load(requireNonNull(Atm.class.getResource("fxml/admin/adminPage.fxml")));
+        var clientPage = (Parent) FXMLLoader.load(requireNonNull(Atm.class.getResource("fxml/client/clientPage.fxml")));
+        var addClientsPage = (Parent) FXMLLoader.load(requireNonNull(Atm.class.getResource("fxml/admin/addClientsPage.fxml")));
         adminPage.setId("admin_window");
         mainPage.setId("main_window");
         clientPage.setId("client_window");
-        Util.addParents(mainPage, adminPage, clientPage);
+        addClientsPage.setId("add_clients_window");
+        Util.addParents(mainPage, adminPage, clientPage, addClientsPage);
     }
 
     /**
