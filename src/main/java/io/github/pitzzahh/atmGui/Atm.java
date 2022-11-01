@@ -56,7 +56,8 @@ public class Atm extends Application {
                 .getDeclaredConstructors())
                 .filter(c -> c.getParameterTypes().length == 0)
                 .findAny()
-                .ifPresent(c -> {c.setAccessible(true);
+                .ifPresent(c -> {
+                    c.setAccessible(true);
                     try {
                         Atm.stage = (Stage) c.newInstance();
                     } catch (Exception e) {
