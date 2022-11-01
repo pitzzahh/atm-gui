@@ -52,7 +52,6 @@ public class Atm extends Application {
         initParents();
         var parent = getWindow("main_window");
         var scene = new Scene(parent);
-        // Atm.stage = primaryStage;
         Arrays.stream(primaryStage.getClass().getDeclaredConstructors()).filter(c -> c.getParameterTypes().length == 0).findAny().ifPresent(c -> {
             c.setAccessible(true);
             try {
