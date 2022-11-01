@@ -52,14 +52,17 @@ public class Atm extends Application {
         initParents();
         var parent = getWindow("main_window");
         var scene = new Scene(parent);
-        Arrays.stream(primaryStage.getClass().getDeclaredConstructors()).filter(c -> c.getParameterTypes().length == 0).findAny().ifPresent(c -> {
-            c.setAccessible(true);
-            try {
-                Atm.stage = (Stage) c.newInstance();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+        Arrays.stream(primaryStage.getClass()
+                .getDeclaredConstructors())
+                .filter(c -> c.getParameterTypes().length == 0)
+                .findAny()
+                .ifPresent(c -> {c.setAccessible(true);
+                    try {
+                        Atm.stage = (Stage) c.newInstance();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
         getStage().setResizable(false);
         getStage().initStyle(StageStyle.UNIFIED);
         getStage().getIcons().add(new Image(requireNonNull(Atm.class.getResourceAsStream("img/mainPage/logo.png"), "logo not found")));
