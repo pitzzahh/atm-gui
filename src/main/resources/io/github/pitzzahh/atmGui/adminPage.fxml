@@ -12,8 +12,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane stylesheets="@css/adminPage.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.pitzzahh.atmGui.controllers.AdminController">
-    <BorderPane layoutY="-2.0" prefHeight="598.0" prefWidth="1000.0" snapToPixel="false" styleClass="admin-window" stylesheets="@css/adminPage.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.pitzzahh.atmGui.controllers.AdminController">
+    <BorderPane layoutY="-2.0" prefHeight="598.0" prefWidth="1000.0" snapToPixel="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <top>
             <HBox alignment="CENTER_LEFT" focusTraversable="true" prefHeight="61.0" styleClass="topBox" stylesheets="@css/adminPage.css" BorderPane.alignment="CENTER_LEFT">
                 <padding>
@@ -70,7 +70,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
                 </Button>
-                <Button layoutX="10.0" layoutY="98.0" mnemonicParsing="false" prefWidth="193.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" text="manage locked accounts" textAlignment="RIGHT" wrapText="true" VBox.vgrow="ALWAYS">
+                <Button fx:id="manageLockedAccounts" layoutX="10.0" layoutY="98.0" mnemonicParsing="false" onMouseEntered="#onMouseEnteredManageLockedAccounts" prefWidth="193.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" text="manage locked accounts" textAlignment="RIGHT" wrapText="true" VBox.vgrow="ALWAYS">
                     <font>
                         <Font size="1.0" />
                     </font>
@@ -83,7 +83,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </VBox.margin>
                 </Button>
-            <Button layoutX="15.0" layoutY="147.0" mnemonicParsing="false" prefWidth="192.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" text="manage account loans" textAlignment="RIGHT" wrapText="true" VBox.vgrow="ALWAYS">
+            <Button fx:id="manageAccountLoans" layoutX="15.0" layoutY="147.0" mnemonicParsing="false" onMouseEntered="#onMouseEnteredManageAccountLoans" prefWidth="192.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" text="manage account loans" textAlignment="RIGHT" wrapText="true" VBox.vgrow="ALWAYS">
                <font>
                   <Font size="1.0" />
                </font>
@@ -96,7 +96,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </Button>
-            <Button graphicTextGap="5.0" layoutX="15.0" layoutY="335.0" mnemonicParsing="false" onMousePressed="#onLogout" prefWidth="192.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" text="logout" textAlignment="RIGHT" wrapText="true" VBox.vgrow="ALWAYS">
+            <Button fx:id="logout" graphicTextGap="5.0" layoutX="15.0" layoutY="335.0" mnemonicParsing="false" onMouseEntered="#onMouseEnteredLogout" onMousePressed="#onLogout" prefWidth="192.0" styleClass="add_client_button" stylesheets="@css/adminPage.css" text="logout" textAlignment="RIGHT" wrapText="true" VBox.vgrow="ALWAYS">
                <font>
                   <Font size="1.0" />
                </font>
