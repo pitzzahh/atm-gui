@@ -5,7 +5,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D6DCF1;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.pitzzahh.atmGui.controllers.AdminController">
-    <Label layoutX="126.0" layoutY="158.0" text="ADD CLIENTS">
+    <Label contentDisplay="CENTER" layoutX="126.0" layoutY="158.0" text="ADD CLIENTS">
         <font>
           <Font size="58.0" />
         </font>
