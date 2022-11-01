@@ -14,7 +14,7 @@
 <AnchorPane prefHeight="645.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.pitzzahh.atmGui.controllers.ClientController">
     <BorderPane prefHeight="545.0" prefWidth="669.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <bottom>
-            <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="65.0" prefWidth="600.0" styleClass="bottom-info" stylesheets="@css/clientPage.css" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="65.0" prefWidth="600.0" styleClass="bottom-info" stylesheets="@../../css/clientPage.css" BorderPane.alignment="CENTER">
                 <BorderPane.margin>
                     <Insets />
                 </BorderPane.margin>
@@ -22,9 +22,9 @@
                     <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
                 </padding>
                 <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@img/mainPage/logo_100px.png" />
+                    <Image url="@../../img/mainPage/logo_100px.png" />
                 </ImageView>
-                <Label styleClass="bank-name" stylesheets="@css/clientPage.css" text="Pitzzahh United Bank" textFill="#006871">
+                <Label styleClass="bank-name" stylesheets="@../../css/clientPage.css" text="Pitzzahh United Bank" textFill="#006871">
                     <padding>
                         <Insets left="10.0" />
                     </padding>

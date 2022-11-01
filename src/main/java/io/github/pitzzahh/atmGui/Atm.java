@@ -21,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import java.time.Month;
+import java.util.Arrays;
 
 /**
  * The main class of the application.
@@ -51,7 +52,15 @@ public class Atm extends Application {
         initParents();
         var parent = getWindow("main_window");
         var scene = new Scene(parent);
-        Atm.stage = primaryStage;
+        // Atm.stage = primaryStage;
+        Arrays.stream(primaryStage.getClass().getDeclaredConstructors()).filter(c -> c.getParameterTypes().length == 0).findAny().ifPresent(c -> {
+            c.setAccessible(true);
+            try {
+                Atm.stage = (Stage) c.newInstance();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
         getStage().setResizable(false);
         getStage().initStyle(StageStyle.UNIFIED);
         getStage().getIcons().add(new Image(requireNonNull(Atm.class.getResourceAsStream("img/mainPage/logo.png"), "logo not found")));
