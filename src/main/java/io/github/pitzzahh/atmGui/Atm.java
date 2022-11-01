@@ -102,13 +102,15 @@ public class Atm extends Application {
      * @throws IOException if the parent cannot be loaded.
      */
     private void initParents() throws IOException {
-        var mainPage = (Parent) FXMLLoader.load(requireNonNull(Atm.class.getResource("mainPage.fxml")));
-        var adminPage = (Parent) FXMLLoader.load(requireNonNull(Atm.class.getResource("adminPage.fxml")));
-        var clientPage = (Parent) FXMLLoader.load(requireNonNull(Atm.class.getResource("clientPage.fxml")));
+        var mainPage = (Parent) FXMLLoader.load(requireNonNull(Atm.class.getResource("fxml/mainPage.fxml")));
+        var adminPage = (Parent) FXMLLoader.load(requireNonNull(Atm.class.getResource("fxml/admin/adminPage.fxml")));
+        var clientPage = (Parent) FXMLLoader.load(requireNonNull(Atm.class.getResource("fxml/client/clientPage.fxml")));
+        var addClientsPage = (Parent) FXMLLoader.load(requireNonNull(Atm.class.getResource("fxml/admin/addClientsPage.fxml")));
         adminPage.setId("admin_window");
         mainPage.setId("main_window");
         clientPage.setId("client_window");
-        Util.addParents(mainPage, adminPage, clientPage);
+        addClientsPage.setId("add_clients_window");
+        Util.addParents(mainPage, adminPage, clientPage, addClientsPage);
     }
 
     /**
