@@ -81,7 +81,7 @@ public class Atm extends Application {
      */
     public static void main(String[] args) {
         service = new AtmService(new InMemory());
-        service.saveClient().apply(
+        getService().saveClient().apply(
                 new Client(
                         "123123123",
                         "123123",
