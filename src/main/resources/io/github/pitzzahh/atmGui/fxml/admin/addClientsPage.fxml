@@ -2,12 +2,37 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D6DCF1;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.pitzzahh.atmGui.controllers.AdminController">
-    <Label contentDisplay="CENTER" layoutX="126.0" layoutY="158.0" text="ADD CLIENTS">
-        <font>
-          <Font size="58.0" />
-        </font>
-    </Label>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D6DCF1;"
+            xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="io.github.pitzzahh.atmGui.controllers.AdminController">
+   <BorderPane layoutX="111.0" layoutY="100.0" prefHeight="400.0" prefWidth="620.0" AnchorPane.bottomAnchor="0.0"
+               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <top>
+         <HBox alignment="CENTER" prefHeight="58.0" prefWidth="600.0" styleClass="nav-bar"
+               stylesheets="@../../css/addClientsPage.css" BorderPane.alignment="CENTER_RIGHT">
+            <Label styleClass="nav-bar-title" stylesheets="@../../css/addClientsPage.css" text="Add Clients"/>
+         </HBox>
+      </top>
+      <center>
+         <BorderPane BorderPane.alignment="CENTER">
+            <right>
+               <Pane maxWidth="300.0" prefHeight="335.0" prefWidth="220.0" styleClass="right-pane"
+                     stylesheets="@../../css/addClientsPage.css" BorderPane.alignment="CENTER"/>
+            </right>
+            <center>
+               <Pane prefHeight="335.0" prefWidth="424.0" styleClass="left-pane"
+                     stylesheets="@../../css/addClientsPage.css" BorderPane.alignment="CENTER">
+                  <HBox layoutY="7.0" prefHeight="50.0" prefWidth="385.0">
+                     <Label prefHeight="39.0" prefWidth="130.0" styleClass="first-name-label"
+                            stylesheets="@../../css/addClientsPage.css" text="First Name"/>
+                  </HBox>
+               </Pane>
+            </center>
+         </BorderPane>
+      </center>
+   </BorderPane>
 </AnchorPane>
