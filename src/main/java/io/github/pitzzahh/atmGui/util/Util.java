@@ -115,8 +115,8 @@ public interface Util {
      * @param id the id of the window.
      */
     static void setCenterScreenOfBorderPane(ActionEvent actionEvent, String id) {
-        ((BorderPane)(((Button) actionEvent.getSource()).getParent().getParent()))
-                .setCenter(Util.getWindow(id));
+        final var BORDER_PANE = ((BorderPane)(((Button) actionEvent.getSource()).getParent().getParent()));
+        BORDER_PANE.setCenter(Util.getWindow(id));
     }
 }
 
