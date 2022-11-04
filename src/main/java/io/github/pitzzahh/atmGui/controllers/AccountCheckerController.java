@@ -52,6 +52,7 @@ public class AccountCheckerController {
     /**
      * Checks if the account number entered exists in the database as an account.
      */
+    @FXML
     private void checkCredential() {
         try {
             final var fieldText = accountNumberField.getText();
@@ -124,6 +125,7 @@ public class AccountCheckerController {
      * Shows the tooltip when the mouse is hovered over the account number field. and if th field is empty.
      * @param mouseEvent the mouse event.
      */
+    @FXML
     public void onMouseEntered(MouseEvent mouseEvent) {
         if (stage != null) stage = (Stage) accountNumberField.getScene().getWindow();
         getLogger().debug("Mouse entered the account number field");
@@ -147,6 +149,7 @@ public class AccountCheckerController {
      * @param mouseEvent the mouse event.
      * @return a tooltip.
      */
+    @FXML
     private static Tooltip getFieldToolTip(MouseEvent mouseEvent) {
         return initToolTip(
                 "Enter your account number",
