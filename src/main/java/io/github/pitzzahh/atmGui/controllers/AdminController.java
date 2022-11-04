@@ -1,8 +1,9 @@
 package io.github.pitzzahh.atmGui.controllers;
 
 import static io.github.pitzzahh.atmGui.Atm.getLogger;
-import static io.github.pitzzahh.atmGui.Atm.getStage;
 import static io.github.pitzzahh.atmGui.util.Util.*;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Button;
@@ -15,6 +16,18 @@ import javafx.fxml.FXML;
  * FXML Controller class for Admin page
  */
 public class AdminController {
+
+    @FXML
+    public TextField firstName;
+
+    @FXML
+    public TextField lastName;
+
+    @FXML
+    public TextField address;
+
+    @FXML
+    public DatePicker dateOfBirth;
 
     @FXML
     private Button addClients;
