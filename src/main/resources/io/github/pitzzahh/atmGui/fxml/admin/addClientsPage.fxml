@@ -1,36 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D6DCF1;"
-            xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="io.github.pitzzahh.atmGui.controllers.AdminController">
-   <BorderPane layoutX="111.0" layoutY="100.0" prefHeight="400.0" prefWidth="620.0" AnchorPane.bottomAnchor="0.0"
-               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D6DCF1;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.pitzzahh.atmGui.controllers.AdminController">
+   <BorderPane layoutX="111.0" layoutY="100.0" prefHeight="400.0" prefWidth="620.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <top>
-         <HBox alignment="CENTER" prefHeight="58.0" prefWidth="600.0" styleClass="nav-bar"
-               stylesheets="@../../css/addClientsPage.css" BorderPane.alignment="CENTER_RIGHT">
-            <Label styleClass="nav-bar-title" stylesheets="@../../css/addClientsPage.css" text="Add Clients"/>
+         <HBox alignment="CENTER" prefHeight="58.0" prefWidth="600.0" styleClass="nav-bar" stylesheets="@../../css/addClientsPage.css" BorderPane.alignment="CENTER_RIGHT">
+            <Label styleClass="nav-bar-title" stylesheets="@../../css/addClientsPage.css" text="Add Clients" />
          </HBox>
       </top>
       <center>
          <BorderPane BorderPane.alignment="CENTER">
             <right>
-               <Pane maxWidth="300.0" prefHeight="335.0" prefWidth="220.0" styleClass="right-pane"
-                     stylesheets="@../../css/addClientsPage.css" BorderPane.alignment="CENTER"/>
+               <Pane maxWidth="300.0" prefHeight="335.0" prefWidth="220.0" styleClass="right-pane" stylesheets="@../../css/addClientsPage.css" BorderPane.alignment="CENTER" />
             </right>
             <center>
-               <Pane prefHeight="335.0" prefWidth="424.0" styleClass="left-pane"
-                     stylesheets="@../../css/addClientsPage.css" BorderPane.alignment="CENTER">
-                  <HBox layoutY="7.0" prefHeight="50.0" prefWidth="385.0">
-                     <Label prefHeight="39.0" prefWidth="130.0" styleClass="first-name-label"
-                            stylesheets="@../../css/addClientsPage.css" text="First Name"/>
-                  </HBox>
-               </Pane>
+               <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <center>
+                     <VBox prefHeight="335.0" prefWidth="383.0" styleClass="field-vbox" stylesheets="@../../css/addClientsPage.css" BorderPane.alignment="CENTER">
+                        <HBox alignment="CENTER_LEFT">
+                           <Label prefHeight="39.0" prefWidth="130.0" styleClass="first-name-label" stylesheets="@../../css/addClientsPage.css" text="First Name" />
+                           <TextField fx:id="firstName" prefHeight="25.0" prefWidth="231.0" HBox.hgrow="ALWAYS">
+                              <HBox.margin>
+                                 <Insets right="10.0" />
+                              </HBox.margin>
+                           </TextField>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT">
+                           <Label prefHeight="39.0" prefWidth="130.0" styleClass="first-name-label" stylesheets="@../../css/addClientsPage.css" text="Last Name" />
+                           <TextField fx:id="lastName" prefHeight="25.0" prefWidth="233.0" HBox.hgrow="ALWAYS">
+                              <HBox.margin>
+                                 <Insets right="10.0" />
+                              </HBox.margin>
+                           </TextField>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="60.0">
+                           <Label prefHeight="39.0" prefWidth="130.0" styleClass="first-name-label" stylesheets="@../../css/addClientsPage.css" text="Address" />
+                           <TextField fx:id="address" prefHeight="25.0" prefWidth="190.0" HBox.hgrow="ALWAYS">
+                              <HBox.margin>
+                                 <Insets right="10.0" />
+                              </HBox.margin>
+                           </TextField>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="60.0">
+                           <Label prefHeight="50.0" prefWidth="153.0" styleClass="first-name-label" stylesheets="@../../css/addClientsPage.css" text="Date Of Birth" />
+                           <DatePicker fx:id="dateOfBirth" prefHeight="25.0" prefWidth="216.0" HBox.hgrow="ALWAYS">
+                              <HBox.margin>
+                                 <Insets right="10.0" />
+                              </HBox.margin>
+                           </DatePicker>
+                        </HBox>
+                     </VBox>
+                  </center>
+               </BorderPane>
             </center>
          </BorderPane>
       </center>
