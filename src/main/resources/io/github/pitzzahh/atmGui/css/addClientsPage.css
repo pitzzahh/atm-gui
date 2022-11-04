@@ -29,3 +29,7 @@
     -fx-text-fill: #ffffff;
     -fx-padding: 10;
 }
+
+.field-vbox {
+    -fx-background-color: #006d77;
+}
