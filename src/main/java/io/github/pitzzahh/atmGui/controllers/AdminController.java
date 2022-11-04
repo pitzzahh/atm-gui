@@ -161,17 +161,18 @@ public class AdminController {
     @FXML
     public void onLogout(ActionEvent actionEvent) {
         getLogger().info("Logging out...");
-        if (getStage().isFullScreen()) getStage().setFullScreen(false);
-        AnchorPane parent = (AnchorPane) ((((Button) actionEvent.getSource()).getParent().getParent())).getParent();
-        Stage stage = (Stage) parent.getScene().getWindow();
+        var parent = (AnchorPane) ((((Button) actionEvent.getSource()).getParent().getParent())).getParent();
+        var stage = (Stage) parent.getScene().getWindow();
         stage.close();
+
         var mainWindow = getWindow("main_window");
+        stage.setTitle("ATM");
+        stage.setFullScreen(false);
+        stage.setMaximized(false);
+        stage.setResizable(false);
+        stage.centerOnScreen();
+        stage.setScene(mainWindow.getScene());
         getLogger().debug("Loading main window");
-        getStage().setTitle("ATM");
-        if (getStage().isFullScreen()) getStage().setFullScreen(false);
-        getStage().setResizable(false);
-        getStage().centerOnScreen();
-        getStage().setScene(mainWindow.getScene());
-        getStage().show();
+        stage.show();
     }
 }
