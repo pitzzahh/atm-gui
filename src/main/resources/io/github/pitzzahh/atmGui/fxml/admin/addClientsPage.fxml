@@ -44,7 +44,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="60.0">
                            <Label prefHeight="39.0" prefWidth="130.0" styleClass="first-name-label" stylesheets="@../../css/addClientsPage.css" text="Address" />
-                           <TextField fx:id="address" prefHeight="25.0" prefWidth="190.0" HBox.hgrow="ALWAYS">
+                           <TextField fx:id="address" onKeyTyped="#oneKeyTyped" prefHeight="25.0" prefWidth="190.0" styleClass="address-field" stylesheets="@../../css/addClientsPage.css" HBox.hgrow="ALWAYS">
                               <HBox.margin>
                                  <Insets right="10.0" />
                               </HBox.margin>
@@ -52,7 +52,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="60.0">
                            <Label prefHeight="50.0" prefWidth="153.0" styleClass="first-name-label" stylesheets="@../../css/addClientsPage.css" text="Date Of Birth" />
-                           <DatePicker fx:id="dateOfBirth" prefHeight="25.0" prefWidth="216.0" HBox.hgrow="ALWAYS">
+                           <DatePicker fx:id="dateOfBirth" prefHeight="27.0" prefWidth="226.0" promptText="mm/dd/yyyy">
                               <HBox.margin>
                                  <Insets right="10.0" />
                               </HBox.margin>
