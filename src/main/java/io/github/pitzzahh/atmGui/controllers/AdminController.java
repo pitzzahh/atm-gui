@@ -1,11 +1,14 @@
 package io.github.pitzzahh.atmGui.controllers;
 
 import static io.github.pitzzahh.atmGui.Atm.getLogger;
+import static io.github.pitzzahh.atmGui.Atm.getStage;
 import static io.github.pitzzahh.atmGui.util.Util.*;
+import org.controlsfx.control.textfield.TextFields;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.util.Duration;
@@ -179,6 +182,9 @@ public class AdminController {
         stage.close();
 
         var mainWindow = getWindow("main_window");
+        getMessageLabel(mainWindow).ifPresent(label -> label.setText(""));
+        getMainProgressBar(mainWindow).ifPresent(pb -> pb.setVisible(false));
+        getStage().setFullScreen(false);
         stage.setTitle("ATM");
         stage.setFullScreen(false);
         stage.setMaximized(false);
@@ -187,5 +193,18 @@ public class AdminController {
         stage.setScene(mainWindow.getScene());
         getLogger().debug("Loading main window");
         stage.show();
+    }
+
+    /**
+     * Used to suggest address locations when typing an address.
+     * @param keyEvent the key event.
+     */
+    @FXML
+    public void oneKeyTyped(KeyEvent keyEvent) {
+        var textField = (TextField) keyEvent.getSource();
+        var binding = TextFields.bindAutoCompletion(textField, getLocations.get());
+        binding.setPrefWidth(textField.getWidth());
+        binding.setVisibleRowCount(3);
+        binding.setHideOnEscape(true);
     }
 }
