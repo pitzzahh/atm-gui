@@ -4,14 +4,20 @@ import io.github.pitzzahh.util.utilities.classes.DynamicArray;
 import io.github.pitzzahh.util.utilities.SecurityUtil;
 import static io.github.pitzzahh.atmGui.Atm.getStage;
 import java.util.concurrent.atomic.AtomicReference;
-import javafx.scene.control.TextField;
+import io.github.pitzzahh.util.utilities.FileUtil;
 import static java.lang.String.format;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.control.Tooltip;
-import javafx.scene.control.Button;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import javafx.event.ActionEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.control.*;
 import javafx.scene.Parent;
+import java.io.IOException;
+import java.io.File;
+import java.util.*;
 
 /**
  * Utility interface for the ATM application.
@@ -118,6 +124,42 @@ public interface Util {
         final var BORDER_PANE = ((BorderPane)(((Button) actionEvent.getSource()).getParent().getParent()));
         BORDER_PANE.setCenter(Util.getWindow(id));
     }
+
+    /**
+     * Get all the locations address as a {@code Set<String>}
+     */
+    Supplier<Set<String>> getLocations = () -> Fields.locations;
+
+    /**
+     * Used to modify the progress bar from the main window.
+     * @param parent the main window parent.
+     * @return an {@code Optional<ProgressBar>}.
+     */
+    static Optional<ProgressBar> getMainProgressBar(Parent parent) {
+        return parent.getChildrenUnmodifiable().stream().findAny()
+                .map(n -> (Pane) n)
+                .map(Pane::getChildren)
+                .map(e -> e.get(e.size() - 1))
+                .map(e -> (ProgressBar) e)
+                .stream().findAny();
+    }
+
+    /**
+     * Used to modify the message label from the main window.
+     * @param parent the main window parent.
+     * @return an {@code Optional<Label>}.
+     */
+    static Optional<Label> getMessageLabel(Parent parent) {
+        return parent.getChildrenUnmodifiable().stream().findAny()
+                .map(n -> (Pane) n)
+                .map(Pane::getChildren)
+                .map(e -> e.get(e.size() - 5))
+                .map(e -> (HBox) e)
+                .map(HBox::getChildren)
+                .map(e -> (Label) e.get(0))
+                .stream()
+                .findAny();
+    }
 }
 
 /**
@@ -128,4 +170,19 @@ class Fields {
      * The parents array.
      */
     static DynamicArray<Parent> parents = new DynamicArray<>();
+    static Set<String> locations;
+    static {
+        try {
+            locations = FileUtil.getFileContents(
+                            new File("src/main/resources/io/github/pitzzahh/atmGui/locations/locations.txt"),
+                            0,
+                            ","
+                    ).stream()
+                    .map(Arrays::toString)
+                    .map(e -> e.replaceAll("[\\[\\]]", ""))
+                    .collect(Collectors.toSet());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
