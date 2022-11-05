@@ -13,7 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
-import javafx.util.Duration;
+import javafx.scene.Parent;
 import javafx.stage.Stage;
 import java.util.Optional;
 import javafx.scene.Scene;
@@ -54,38 +54,48 @@ public class AccountCheckerController {
      */
     @FXML
     private void checkCredential() {
-        try {
-            final var fieldText = accountNumberField.getText();
-            var debugMessage = new AtomicReference<>("");
-            getLogger().debug("Admin account number: {}", $admin);
-            if (fieldText.equals($admin)) {
-                var service = PBar.showProgressBar(progressBar);
-                service.setOnSucceeded(stateEvent -> {
-                    var adminWindow = getWindow("admin_window");
-                    getStage().close();
-                    moveWindow(adminWindow);
-                    if (adminWindow.getScene() != null) getStage().setScene(adminWindow.getScene()); // if scene is present, get it
-                    else getStage().setScene(new Scene(adminWindow)); // create new scene if new login
-                    getStage().setTitle("Administrator");
-                    getStage().setResizable(true);
-                    getStage().centerOnScreen();
-                    getStage().addEventHandler(KeyEvent.KEY_PRESSED, event -> {
-                        if (KeyCode.F11.equals(event.getCode())) {
-                            getStage().setFullScreen(!getStage().isFullScreen());
-                        }
-                    });
-                    getStage().show();
-                    accountNumberField.clear();
-                    accountNumberField.setVisible(true);
-                    debugMessage.set("Welcome admin!");
-                });
-                service.start();
-            }
-            else {
-                var doesAccountExist = Validator.doesAccountExist(fieldText);
+
+        final var fieldText = accountNumberField.getText();
+        var debugMessage = new AtomicReference<>("");
+        getLogger().debug("Admin account number: {}", $admin);
+
+        final var progressBarService = PBar.showProgressBar(progressBar);
+        progressBarService.setOnRunning(e -> message.setText("Please Wait"));
+        progressBarService.setOnSucceeded(stateEvent -> checker(fieldText, debugMessage));
+        progressBarService.start();
+    }
+
+    /**
+     * To shorten the lambda above.
+     * @param fieldText the input from the user.
+     * @param debugMessage the message for debugging. also the error message.
+     */
+    private void checker(String fieldText, AtomicReference<String> debugMessage) {
+        if (fieldText.equals($admin)) {
+            var adminWindow = getWindow("admin_window");
+            getStage().close();
+            moveWindow(adminWindow);
+            if (adminWindow.getScene() != null) getStage().setScene(adminWindow.getScene()); // if scene is present, get it
+            else getStage().setScene(new Scene(adminWindow)); // create new scene if new login
+            getStage().setTitle("Administrator");
+            getStage().setResizable(true);
+            getStage().centerOnScreen();
+            getStage().addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+                if (KeyCode.F11.equals(event.getCode())) getStage().setFullScreen(!getStage().isFullScreen());
+            });
+            getStage().show();
+            progressBar.setVisible(false);
+            accountNumberField.clear();
+            accountNumberField.setVisible(true);
+            debugMessage.set("Welcome admin!");
+            progressBar.progressProperty().unbind();
+        }
+        else {
+            try {
+                final boolean doesAccountExist = Validator.doesAccountExist(fieldText);
                 if (doesAccountExist) {
                     debugMessage.set("Account exists");
-                    var clientWindow = getWindow("client_window");
+                    Parent clientWindow = getWindow("client_window");
                     getStage().close();
                     moveWindow(clientWindow);
                     if (clientWindow.getScene() != null) getStage().setScene(clientWindow.getScene()); // if scene is present, get it
@@ -97,15 +107,14 @@ public class AccountCheckerController {
                     accountNumberField.setVisible(true);
                 }
                 else debugMessage.set("Account does not exist");
-                message.setText(debugMessage.get());
+            } catch (RuntimeException runtimeException) {
+                message.setText(runtimeException.getMessage());
+                getLogger().error(runtimeException.getMessage());
                 accountNumberField.setVisible(true);
+                progressBar.setVisible(false);
             }
-            getLogger().debug(debugMessage.get());
-        } catch (RuntimeException runtimeException) {
-            message.setText(runtimeException.getMessage());
-            getLogger().error(runtimeException.getMessage());
-            accountNumberField.setVisible(true);
         }
+        getLogger().debug(debugMessage.get());
     }
 
     /**
@@ -129,13 +138,12 @@ public class AccountCheckerController {
     public void onMouseEntered(MouseEvent mouseEvent) {
         if (stage != null) stage = (Stage) accountNumberField.getScene().getWindow();
         getLogger().debug("Mouse entered the account number field");
-        var $an = accountNumberField.getText().trim();
-        var optionalTooltip = Optional.ofNullable(accountNumberField.getTooltip());
+        final String $an = accountNumberField.getText().trim();
+        final Optional<Tooltip> optionalTooltip = Optional.ofNullable(accountNumberField.getTooltip());
         if ($an.isEmpty()) {
             if (optionalTooltip.isEmpty()) {
                 getLogger().debug("Setting tooltip");
-                var toolTip = getFieldToolTip(mouseEvent);
-                toolTip.setShowDuration(Duration.seconds(3));
+                Tooltip toolTip = getFieldToolTip(mouseEvent);
                 accountNumberField.setTooltip(toolTip);
             }
         } else if (optionalTooltip.isPresent()) {
