@@ -33,3 +33,8 @@
 .field-vbox {
     -fx-background-color: #006d77;
 }
+
+.text-field {
+    -fx-font-size: 15;
+    -fx-font-family: "Arial";
+}
