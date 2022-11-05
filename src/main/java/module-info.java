@@ -5,6 +5,7 @@ module io.github.pitzzahh.atm.gui {
     requires automated.teller.machine.API;
     requires ch.qos.logback.core;
     requires org.slf4j;
+    requires org.controlsfx.controls;
 
     opens io.github.pitzzahh.atmGui.controllers to javafx.fxml;
     exports io.github.pitzzahh.atmGui;
