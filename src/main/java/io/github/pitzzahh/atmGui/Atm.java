@@ -1,9 +1,8 @@
 package io.github.pitzzahh.atmGui;
 
 import io.github.pitzzahh.util.utilities.classes.enums.Gender;
-import static io.github.pitzzahh.atmGui.util.Util.moveWindow;
-import static io.github.pitzzahh.atmGui.util.Util.getWindow;
 import io.github.pitzzahh.util.utilities.classes.Person;
+import static io.github.pitzzahh.atmGui.util.Util.*;
 import io.github.pitzzahh.atm.service.AtmService;
 import static java.util.Objects.requireNonNull;
 import io.github.pitzzahh.atm.entity.Client;
@@ -21,7 +20,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import java.time.Month;
-import java.util.Arrays;
 
 /**
  * The main class of the application.
@@ -52,17 +50,12 @@ public class Atm extends Application {
         initParents();
         var parent = getWindow("main_window");
         var scene = new Scene(parent);
-        Arrays.stream(primaryStage.getClass()
-                .getDeclaredConstructors())
-                .filter(c -> c.getParameterTypes().length == 0)
-                .findAny()
-                .ifPresent(c -> {
-                    c.setAccessible(true);
-                    try {
-                        Atm.stage = (Stage) c.newInstance();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+        Atm.stage = primaryStage;
+        var mainProgressBar = getMainProgressBar(parent);
+        mainProgressBar
+                .ifPresent(pb -> {
+                    pb.setVisible(false);
+                    pb.setStyle("-fx-accent: cyan;");
                 });
         getStage().setResizable(false);
         getStage().initStyle(StageStyle.UNIFIED);
@@ -70,6 +63,7 @@ public class Atm extends Application {
         moveWindow(parent);
         getStage().setScene(scene);
         getStage().centerOnScreen();
+        getStage().toFront();
         getStage().setTitle("ATM");
         getStage().show();
         LOGGER.info("Application started");
