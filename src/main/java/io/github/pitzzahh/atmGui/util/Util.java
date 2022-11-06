@@ -1,11 +1,8 @@
 package io.github.pitzzahh.atmGui.util;
 
-import io.github.pitzzahh.atmGui.Atm;
 import io.github.pitzzahh.util.utilities.classes.DynamicArray;
 import io.github.pitzzahh.util.utilities.SecurityUtil;
 import static io.github.pitzzahh.atmGui.Atm.getStage;
-
-import java.io.InputStream;
 import java.util.concurrent.atomic.AtomicReference;
 import io.github.pitzzahh.util.utilities.FileUtil;
 import static java.lang.String.format;
@@ -18,8 +15,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.*;
 import javafx.scene.Parent;
-import javafx.scene.text.Font;
-
 import java.io.IOException;
 import java.io.File;
 import java.util.*;
@@ -166,23 +161,6 @@ public interface Util {
                 .findAny();
     }
 
-    /**
-     * Loads the fonts as a {@code Font} that will be used later on.
-     * @return {@code true} if all the fonts are loaded.
-     */
-    static boolean loadFonts() {
-        var light = Objects.requireNonNull(
-                Atm.class.getResourceAsStream("fonts/JetBrainsMono-Light.ttf"),
-                "Cannot find light font"
-        );
-        var bold = Objects.requireNonNull(
-                Atm.class.getResourceAsStream("fonts/JetBrainsMono-Bold.ttf"),
-                "Cannot find bold font"
-        );
-        Fields.fonts.insert(Font.loadFont(light, 12));
-        Fields.fonts.insert(Font.loadFont(bold, 12));
-        return Fields.fonts.size() == 2;
-    }
 }
 
 /**
@@ -193,7 +171,6 @@ class Fields {
      * The parents array.
      */
     static DynamicArray<Parent> parents = new DynamicArray<>();
-    static DynamicArray<Font> fonts = new DynamicArray<>();
     static Set<String> locations;
     static {
         try {
