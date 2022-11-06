@@ -67,7 +67,7 @@ public interface Util {
      * @param id the id of the parent.
      * @return the parent with the specified id.
      */
-    static Parent getWindow(String id) {
+    static Parent getParent(String id) {
         return Fields.parents.stream()
                 .filter(parent -> parent.getId().equals(id))
                 .findAny()
@@ -122,7 +122,7 @@ public interface Util {
      */
     static void setCenterScreenOfBorderPane(ActionEvent actionEvent, String id) {
         final var BORDER_PANE = ((BorderPane)(((Button) actionEvent.getSource()).getParent().getParent()));
-        BORDER_PANE.setCenter(Util.getWindow(id));
+        BORDER_PANE.setCenter(Util.getParent(id));
     }
 
     /**
