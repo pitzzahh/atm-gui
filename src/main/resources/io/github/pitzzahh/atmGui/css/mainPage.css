@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('../fonts/JetBrainsMono.ttf');
+}
+
 .main-label {
     -fx-font-family: "JetBrains Mono";
     -fx-font-size: 70px;

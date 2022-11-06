@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('../fonts/JetBrainsMono.ttf');
+}
+
 .nav-bar {
     -fx-background-color: #043033;
     -fx-background-radius: 0;
