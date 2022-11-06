@@ -72,7 +72,7 @@ public class AccountCheckerController {
      */
     private void checker(String fieldText, AtomicReference<String> debugMessage) {
         if (fieldText.equals($admin)) {
-            var adminWindow = getWindow("admin_window");
+            var adminWindow = getParent("admin_window");
             getStage().close();
             moveWindow(adminWindow);
             if (adminWindow.getScene() != null) getStage().setScene(adminWindow.getScene()); // if scene is present, get it
@@ -95,7 +95,7 @@ public class AccountCheckerController {
                 final boolean doesAccountExist = Validator.doesAccountExist(fieldText);
                 if (doesAccountExist) {
                     debugMessage.set("Account exists");
-                    Parent clientWindow = getWindow("client_window");
+                    Parent clientWindow = getParent("client_window");
                     getStage().close();
                     moveWindow(clientWindow);
                     if (clientWindow.getScene() != null) getStage().setScene(clientWindow.getScene()); // if scene is present, get it

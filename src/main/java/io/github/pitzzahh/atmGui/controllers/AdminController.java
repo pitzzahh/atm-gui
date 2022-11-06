@@ -181,7 +181,7 @@ public class AdminController {
         var stage = (Stage) parent.getScene().getWindow();
         stage.close();
 
-        var mainWindow = getWindow("main_window");
+        var mainWindow = getParent("main_window");
         getMessageLabel(mainWindow).ifPresent(label -> label.setText(""));
         getMainProgressBar(mainWindow).ifPresent(pb -> pb.setVisible(false));
         getStage().setFullScreen(false);

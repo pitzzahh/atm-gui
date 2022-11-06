@@ -48,7 +48,7 @@ public class Atm extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         initParents();
-        var parent = getWindow("main_window");
+        var parent = getParent("main_window");
         var scene = new Scene(parent);
         Atm.stage = primaryStage;
         var mainProgressBar = getMainProgressBar(parent);
