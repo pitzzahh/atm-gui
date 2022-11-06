@@ -13,7 +13,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
-import javafx.scene.Parent;
 import javafx.stage.Stage;
 import java.util.Optional;
 import javafx.scene.Scene;
@@ -60,8 +59,25 @@ public class AccountCheckerController {
         getLogger().debug("Admin account number: {}", $admin);
 
         final var progressBarService = PBar.showProgressBar(progressBar);
-        progressBarService.setOnRunning(e -> message.setText("Please Wait"));
-        progressBarService.setOnSucceeded(stateEvent -> checker(fieldText, debugMessage));
+        // TODO: move the label on top of the progress bar.
+        progressBarService.setOnScheduled(e -> {
+            message.setText("Please Wait");
+            message.setStyle("" +
+                    "-fx-font-family: JetBrains Mono;" +
+                    "fx-font-size: 20px;" +
+                    "-fx-text-fill: #2100C4;" +
+                    "-fx-font-weight: bold;"
+            );
+        });
+        progressBarService.setOnSucceeded(stateEvent -> {
+            message.setStyle("" +
+                    "-fx-font-family: JetBrains Mono;" +
+                    "-fx-font-size: 20px;" +
+                    "-fx-text-fill: #d62828;" +
+                    "-fx-font-weight: bold;"
+            );
+            checker(fieldText, debugMessage);
+        });
         progressBarService.start();
     }
 
@@ -95,7 +111,7 @@ public class AccountCheckerController {
                 final boolean doesAccountExist = Validator.doesAccountExist(fieldText);
                 if (doesAccountExist) {
                     debugMessage.set("Account exists");
-                    Parent clientWindow = getParent("client_window");
+                    var clientWindow = getParent("client_window");
                     getStage().close();
                     moveWindow(clientWindow);
                     if (clientWindow.getScene() != null) getStage().setScene(clientWindow.getScene()); // if scene is present, get it
