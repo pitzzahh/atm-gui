@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('../fonts/JetBrainsMono.ttf');
+}
+
 .topBox {
     -fx-background-color: #006d77;
 }
