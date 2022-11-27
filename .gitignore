@@ -10,7 +10,7 @@ target/
 .idea/libraries/
 *.iws
 *.ipr
-
+/src/main/java/io/github/pitzzahh/atmGui/App.java
 ### Eclipse ###
 .apt_generated
 .classpath

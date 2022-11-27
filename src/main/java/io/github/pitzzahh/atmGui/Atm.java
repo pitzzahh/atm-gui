@@ -7,7 +7,6 @@ import io.github.pitzzahh.atm.service.AtmService;
 import static java.util.Objects.requireNonNull;
 import io.github.pitzzahh.atm.entity.Client;
 import io.github.pitzzahh.atm.dao.InMemory;
-import io.github.pitzzahh.atmGui.util.Util;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.StageStyle;
@@ -58,7 +57,7 @@ public class Atm extends Application {
                     pb.setStyle("-fx-accent: cyan;");
                 });
         getStage().setResizable(false);
-        getStage().initStyle(StageStyle.UNIFIED);
+        getStage().initStyle(StageStyle.DECORATED);
         getStage().getIcons().add(new Image(requireNonNull(Atm.class.getResourceAsStream("img/mainPage/logo.png"), "logo not found")));
         moveWindow(parent);
         getStage().setScene(scene);
@@ -107,7 +106,9 @@ public class Atm extends Application {
         mainPage.setId("main_window");
         clientPage.setId("client_window");
         addClientsPage.setId("add_clients_window");
-        Util.addParents(mainPage, adminPage, clientPage, addClientsPage);
+        addParents.accept(new Parent[] {
+                mainPage, adminPage, clientPage, addClientsPage
+        });
     }
 
     /**

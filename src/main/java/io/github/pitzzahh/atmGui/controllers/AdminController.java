@@ -3,17 +3,19 @@ package io.github.pitzzahh.atmGui.controllers;
 import static io.github.pitzzahh.atmGui.Atm.getLogger;
 import static io.github.pitzzahh.atmGui.Atm.getStage;
 import static io.github.pitzzahh.atmGui.util.Util.*;
+
+import javafx.scene.control.*;
 import org.controlsfx.control.textfield.TextFields;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import io.github.pitzzahh.atmGui.entity.Client;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.util.Duration;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
+
+import java.util.Optional;
 
 /**
  * FXML Controller class for Admin page
@@ -31,6 +33,9 @@ public class AdminController {
 
     @FXML
     public DatePicker dateOfBirth;
+
+    @FXML
+    public TableView<Client> addClientsTable;
 
     @FXML
     private Button addClients;
@@ -59,7 +64,7 @@ public class AdminController {
         var tooltip = initToolTip(
                 "Add Clients",
                 mouseEvent,
-                adminButtonFunctionsToolTip()
+                adminButtonFunctionsToolTipStyle()
                 );
         tooltip.setShowDuration(Duration.seconds(3));
         addClients.setTooltip(tooltip);
@@ -74,7 +79,7 @@ public class AdminController {
         var tooltip = initToolTip(
                 "Remove Clients",
                 mouseEvent,
-                adminButtonFunctionsToolTip()
+                adminButtonFunctionsToolTipStyle()
         );
         tooltip.setShowDuration(Duration.seconds(3));
         removeClients.setTooltip(tooltip);
@@ -89,7 +94,7 @@ public class AdminController {
         var tooltip = initToolTip(
                 "View the list of Clients information",
                 mouseEvent,
-                adminButtonFunctionsToolTip()
+                adminButtonFunctionsToolTipStyle()
         );
         tooltip.setShowDuration(Duration.seconds(3));
         viewClients.setTooltip(tooltip);
@@ -104,7 +109,7 @@ public class AdminController {
         var tooltip = initToolTip(
                 "Manage Locked Accounts",
                 mouseEvent,
-                adminButtonFunctionsToolTip()
+                adminButtonFunctionsToolTipStyle()
         );
         tooltip.setShowDuration(Duration.seconds(3));
         manageLockedAccounts.setTooltip(tooltip);
@@ -119,7 +124,7 @@ public class AdminController {
         var tooltip = initToolTip(
                 "Manage Account Loans",
                 mouseEvent,
-                adminButtonFunctionsToolTip()
+                adminButtonFunctionsToolTipStyle()
         );
         tooltip.setShowDuration(Duration.seconds(3));
         manageAccountLoans.setTooltip(tooltip);
@@ -134,7 +139,7 @@ public class AdminController {
         var tooltip = initToolTip(
                 "Logout Session",
                 mouseEvent,
-                adminButtonFunctionsToolTip()
+                adminButtonFunctionsToolTipStyle()
         );
         tooltip.setShowDuration(Duration.seconds(3));
         logout.setTooltip(tooltip);
@@ -146,6 +151,7 @@ public class AdminController {
      */
     @FXML
     public void onAddClients(ActionEvent actionEvent) {
+        addActiveButtons(addClients);
         setCenterScreenOfBorderPane(actionEvent, "add_clients_window");
     }
 
@@ -206,5 +212,45 @@ public class AdminController {
         binding.setPrefWidth(textField.getWidth());
         binding.setVisibleRowCount(3);
         binding.setHideOnEscape(true);
+    }
+
+    public void onSaveClient(MouseEvent mouseEvent) {
+        final var FIRST_NAME = firstName.getText().trim();
+        final var LAST_NAME = lastName.getText().trim();
+        final var ADDRESS = address.getText().trim();
+        boolean ok = checkInputs(
+                mouseEvent.getTarget() instanceof Button ? (Button) mouseEvent.getTarget() : new Button(),
+                mouseEvent,
+                FIRST_NAME,
+                LAST_NAME,
+                ADDRESS,
+                dateOfBirth
+        );
+        getLogger().error(String.format("Is ok %s", ok));
+        if (ok) fillTable(
+                new Client(
+                        FIRST_NAME.concat(" ").concat(LAST_NAME),
+                        ADDRESS,
+                        dateOfBirth.getValue(),
+                        generateRandomAccountNumber(),
+                        generateRandomPin()
+                ),
+                addClientsTable
+        );
+    }
+
+    public void onSaveClientAttempt(MouseEvent mouseEvent) {
+        final var FIRST_NAME = firstName.getText().trim();
+        final var LAST_NAME = lastName.getText().trim();
+        final var ADDRESS = address.getText().trim();
+        boolean ok = checkInputs(
+                mouseEvent.getTarget() instanceof Button ? (Button) mouseEvent.getTarget() : new Button(),
+                mouseEvent,
+                FIRST_NAME,
+                LAST_NAME,
+                ADDRESS,
+                dateOfBirth
+        );
+        ((Button) mouseEvent.getTarget()).setDisable(!ok);
     }
 }
