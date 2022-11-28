@@ -32,7 +32,7 @@
                   <left>
                      <VBox maxWidth="800.0" prefHeight="473.0" prefWidth="509.0" styleClass="field-vbox" stylesheets="@../../css/addClientsPage.css" BorderPane.alignment="CENTER">
                         <HBox alignment="CENTER_LEFT" VBox.vgrow="NEVER">
-                           <Label prefHeight="39.0" prefWidth="130.0" styleClass="first-name-label" stylesheets="@../../css/addClientsPage.css" text="First Name" />
+                           <Label prefHeight="50.0" prefWidth="153.0" styleClass="first-name-label" stylesheets="@../../css/addClientsPage.css" text="First Name" />
                            <TextField fx:id="firstName" prefHeight="25.0" prefWidth="231.0" HBox.hgrow="ALWAYS">
                               <HBox.margin>
                                  <Insets right="10.0" />
@@ -40,7 +40,7 @@
                            </TextField>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" VBox.vgrow="NEVER">
-                           <Label prefHeight="39.0" prefWidth="130.0" styleClass="first-name-label" stylesheets="@../../css/addClientsPage.css" text="Last Name" />
+                           <Label prefHeight="50.0" prefWidth="153.0" styleClass="first-name-label" stylesheets="@../../css/addClientsPage.css" text="Last Name" />
                            <TextField fx:id="lastName" prefHeight="25.0" prefWidth="233.0" HBox.hgrow="ALWAYS">
                               <HBox.margin>
                                  <Insets right="10.0" />
@@ -48,8 +48,8 @@
                            </TextField>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="60.0" VBox.vgrow="NEVER">
-                           <Label prefHeight="39.0" prefWidth="130.0" styleClass="first-name-label" stylesheets="@../../css/addClientsPage.css" text="Address" />
-                           <TextField fx:id="address" onKeyTyped="#oneKeyTyped" prefHeight="25.0" prefWidth="190.0" styleClass="address-field" stylesheets="@../../css/addClientsPage.css" HBox.hgrow="ALWAYS">
+                           <Label prefHeight="50.0" prefWidth="153.0" styleClass="first-name-label" stylesheets="@../../css/addClientsPage.css" text="Address" />
+                           <TextField fx:id="address" onKeyTyped="#oneKeyTyped" prefHeight="25.0" prefWidth="190.0" stylesheets="@../../css/addClientsPage.css" HBox.hgrow="ALWAYS">
                               <HBox.margin>
                                  <Insets right="10.0" />
                               </HBox.margin>
@@ -62,13 +62,18 @@
                                  <Insets right="10.0" />
                               </HBox.margin>
                            </DatePicker>
+                           <Button mnemonicParsing="false" onAction="#onClear" prefWidth="109.0" text="CLEAR ALL" HBox.hgrow="ALWAYS">
+                              <HBox.margin>
+                                 <Insets right="10.0" />
+                              </HBox.margin>
+                           </Button>
                         </HBox>
                         <VBox alignment="CENTER" prefHeight="277.0" prefWidth="509.0" VBox.vgrow="ALWAYS">
                            <HBox alignment="CENTER" prefHeight="275.0" prefWidth="509.0">
                               <effect>
                                  <Glow />
                               </effect>
-                              <Button layoutX="165.0" layoutY="134.0" mnemonicParsing="false" onMouseClicked="#onSaveClient" onMouseEntered="#onSaveClientAttempt" prefHeight="65.0" prefWidth="120.0" text="ADD">
+                              <Button fx:id="addClientButton" layoutX="165.0" layoutY="134.0" mnemonicParsing="false" onMouseClicked="#onAddClient" onMouseEntered="#onAddClientAttempt" prefHeight="65.0" prefWidth="120.0" text="ADD">
                                  <HBox.margin>
                                     <Insets right="5.0" />
                                  </HBox.margin>
