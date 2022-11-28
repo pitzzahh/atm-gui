@@ -31,7 +31,7 @@
         <dependency>
             <groupId>io.github.pitzzahh</groupId>
             <artifactId>util-classes</artifactId>
-            <version>1.0.13</version>
+            <version>1.0.14</version>
         </dependency>
 
         <dependency>
@@ -87,7 +87,7 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.4.4</version>
+            <version>1.4.5</version>
             <exclusions>
                 <exclusion>
                     <groupId>ch.qos.logback</groupId>
@@ -99,7 +99,7 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
-            <version>1.4.4</version>
+            <version>1.4.5</version>
             <exclusions>
                 <exclusion>
                     <groupId>ch.qos.logback</groupId>
@@ -111,7 +111,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>2.0.3</version>
+            <version>2.0.4</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>
