@@ -17,7 +17,7 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-jcl:5.3.23" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.3.23" level="project" />
     <orderEntry type="library" name="Maven: org.controlsfx:controlsfx:11.1.2" level="project" />
-    <orderEntry type="library" name="Maven: io.github.pitzzahh:util-classes:1.0.13" level="project" />
+    <orderEntry type="library" name="Maven: io.github.pitzzahh:util-classes:1.0.14" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:19" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:win:19" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:19" level="project" />
@@ -32,10 +32,9 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.apiguardian:apiguardian-api:1.1.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.9.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-engine:1.9.1" level="project" />
-    <orderEntry type="library" name="Maven: org.postgresql:postgresql:42.5.0" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: org.checkerframework:checker-qual:3.5.0" level="project" />
-    <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.4.4" level="project" />
-    <orderEntry type="library" name="Maven: ch.qos.logback:logback-core:1.4.4" level="project" />
-    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:2.0.3" level="project" />
+    <orderEntry type="library" name="Maven: org.postgresql:postgresql:15.1" level="project" />
+    <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.4.5" level="project" />
+    <orderEntry type="library" name="Maven: ch.qos.logback:logback-core:1.4.5" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:2.0.4" level="project" />
   </component>
 </module>
