@@ -178,11 +178,7 @@ public class AccountCheckerController {
         return initToolTip(
                 "Enter your account number",
                 mouseEvent,
-                "-fx-background-color: #CFD7DF; " +
-                        "-fx-text-fill: #D50000; " +
-                        "-fx-font-weight: bold; " +
-                        "-fx-font-family: Jetbrains Mono;" +
-                        "-fx-font-size: 15px;"
+                errorToolTipStyle()
         );
     }
 }

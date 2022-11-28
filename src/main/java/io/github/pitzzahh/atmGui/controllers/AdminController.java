@@ -4,13 +4,12 @@ import static io.github.pitzzahh.atmGui.Atm.getLogger;
 import static io.github.pitzzahh.atmGui.Atm.getStage;
 import static io.github.pitzzahh.atmGui.util.Util.*;
 import org.controlsfx.control.textfield.TextFields;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import io.github.pitzzahh.atmGui.entity.Client;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
+import javafx.scene.control.*;
 import javafx.util.Duration;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
@@ -33,6 +32,12 @@ public class AdminController {
     public DatePicker dateOfBirth;
 
     @FXML
+    public TableView<Client> addClientsTable;
+
+    @FXML
+    public Button addClientButton;
+
+    @FXML
     private Button addClients;
 
     @FXML
@@ -50,6 +55,8 @@ public class AdminController {
     @FXML
     private Button logout;
 
+    private boolean isOk;
+
     /**
      * Shows a tooltip when the mouse is hovered over the add clients button.
      * @param mouseEvent the mouse event.
@@ -59,7 +66,7 @@ public class AdminController {
         var tooltip = initToolTip(
                 "Add Clients",
                 mouseEvent,
-                adminButtonFunctionsToolTip()
+                adminButtonFunctionsToolTipStyle()
                 );
         tooltip.setShowDuration(Duration.seconds(3));
         addClients.setTooltip(tooltip);
@@ -74,7 +81,7 @@ public class AdminController {
         var tooltip = initToolTip(
                 "Remove Clients",
                 mouseEvent,
-                adminButtonFunctionsToolTip()
+                adminButtonFunctionsToolTipStyle()
         );
         tooltip.setShowDuration(Duration.seconds(3));
         removeClients.setTooltip(tooltip);
@@ -89,7 +96,7 @@ public class AdminController {
         var tooltip = initToolTip(
                 "View the list of Clients information",
                 mouseEvent,
-                adminButtonFunctionsToolTip()
+                adminButtonFunctionsToolTipStyle()
         );
         tooltip.setShowDuration(Duration.seconds(3));
         viewClients.setTooltip(tooltip);
@@ -104,7 +111,7 @@ public class AdminController {
         var tooltip = initToolTip(
                 "Manage Locked Accounts",
                 mouseEvent,
-                adminButtonFunctionsToolTip()
+                adminButtonFunctionsToolTipStyle()
         );
         tooltip.setShowDuration(Duration.seconds(3));
         manageLockedAccounts.setTooltip(tooltip);
@@ -119,7 +126,7 @@ public class AdminController {
         var tooltip = initToolTip(
                 "Manage Account Loans",
                 mouseEvent,
-                adminButtonFunctionsToolTip()
+                adminButtonFunctionsToolTipStyle()
         );
         tooltip.setShowDuration(Duration.seconds(3));
         manageAccountLoans.setTooltip(tooltip);
@@ -134,7 +141,7 @@ public class AdminController {
         var tooltip = initToolTip(
                 "Logout Session",
                 mouseEvent,
-                adminButtonFunctionsToolTip()
+                adminButtonFunctionsToolTipStyle()
         );
         tooltip.setShowDuration(Duration.seconds(3));
         logout.setTooltip(tooltip);
@@ -146,6 +153,7 @@ public class AdminController {
      */
     @FXML
     public void onAddClients(ActionEvent actionEvent) {
+        addActiveButtons(addClients);
         setCenterScreenOfBorderPane(actionEvent, "add_clients_window");
     }
 
@@ -206,5 +214,52 @@ public class AdminController {
         binding.setPrefWidth(textField.getWidth());
         binding.setVisibleRowCount(3);
         binding.setHideOnEscape(true);
+    }
+
+    @FXML
+    public void onAddClient(MouseEvent mouseEvent) {
+        mouseEvent.consume();
+        getLogger().debug(String.format("IS OK %s", isOk));
+        if (isOk) {
+            final var FIRST_NAME = firstName.getText().trim();
+            final var LAST_NAME = lastName.getText().trim();
+            final var ADDRESS = address.getText().trim();
+            fillTable(
+                    new Client(
+                            FIRST_NAME.concat(" ").concat(LAST_NAME),
+                            ADDRESS,
+                            dateOfBirth.getValue(),
+                            generateRandomAccountNumber(),
+                            generateRandomPin()
+                    ),
+                    addClientsTable
+            );
+        }
+    }
+
+    @FXML
+    public void onAddClientAttempt(MouseEvent mouseEvent) {
+        final var FIRST_NAME = firstName.getText().trim();
+        final var LAST_NAME = lastName.getText().trim();
+        final var ADDRESS = address.getText().trim();
+        isOk = checkInputs(
+                addClientButton,
+                mouseEvent,
+                FIRST_NAME,
+                LAST_NAME,
+                ADDRESS,
+                dateOfBirth
+        );
+        if (isOk && addClientButton.getTooltip() != null) addClientButton.setTooltip(null);
+    }
+
+    @FXML
+    public void onClear(ActionEvent event) {
+        event.consume();
+        firstName.clear();
+        lastName.clear();
+        address.clear();
+        dateOfBirth.setValue(null);
+        addClientButton.setDisable(false);
     }
 }

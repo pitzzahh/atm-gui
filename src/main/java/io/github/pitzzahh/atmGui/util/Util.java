@@ -2,20 +2,25 @@ package io.github.pitzzahh.atmGui.util;
 
 import io.github.pitzzahh.util.utilities.classes.DynamicArray;
 import io.github.pitzzahh.util.utilities.SecurityUtil;
+import static io.github.pitzzahh.atmGui.Atm.getLogger;
 import static io.github.pitzzahh.atmGui.Atm.getStage;
 import java.util.concurrent.atomic.AtomicReference;
 import io.github.pitzzahh.util.utilities.FileUtil;
+import io.github.pitzzahh.atmGui.entity.Client;
 import static java.lang.String.format;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.input.MouseEvent;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.*;
+import javafx.util.Duration;
 import javafx.scene.Parent;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.io.File;
 import java.util.*;
 
@@ -56,11 +61,9 @@ public interface Util {
 
     /**
      * Add a list parent to the parents array.
-     * @param p the list of parents.
+     * takes an array of parents
      */
-    static void addParents(Parent... p) {
-        Fields.parents.insert(p);
-    }
+    Consumer<Parent[]> addParents = Fields.parents::insert;
 
     /**
      * Gets the parent with the specified id.
@@ -93,12 +96,20 @@ public interface Util {
      * Gets the button styles for admin window
      * @return styles for admin window buttons.
      */
-    static String adminButtonFunctionsToolTip() {
+    static String adminButtonFunctionsToolTipStyle() {
         return "-fx-background-color: #003049; " +
                "-fx-text-fill: white; " +
                "-fx-font-weight: bold; " +
                "-fx-font-family: Jetbrains Mono;" +
                "-fx-font-size: 15px;";
+    }
+
+    static String errorToolTipStyle() {
+        return "-fx-background-color: #CFD7DF; " +
+                "-fx-text-fill: #D50000; " +
+                "-fx-font-weight: bold; " +
+                "-fx-font-family: Jetbrains Mono;" +
+                "-fx-font-size: 15px;";
     }
 
     /**
@@ -161,6 +172,94 @@ public interface Util {
                 .findAny();
     }
 
+    static void addActiveButtons(Button button) {
+        boolean b = Fields.activeButtons.stream()
+                .anyMatch(button1 -> button1.getId().equals(button.getId()));
+        if (!b) Fields.activeButtons.insert(button);
+    }
+
+    static Optional<Button> getActiveButton(String id) {
+        return Fields.activeButtons.stream()
+                .filter(button -> button.getId().equals(id))
+                .findAny();
+    }
+
+    static boolean checkInputs(Button button, MouseEvent event, String firstName, String lastName, String address, DatePicker date) {
+
+        assert date != null;
+        Optional<LocalDate> value = Optional.ofNullable(date.getValue());
+        getLogger().error(format("IS DATE NULL: %s", value));
+
+        if (firstName.isEmpty() && lastName.isEmpty() && address.isEmpty() && value.isEmpty()) {
+            Tooltip tooltip = initToolTip(
+                    "Cannot Add Client, All Required Input are empty",
+                    event,
+                    errorToolTipStyle()
+            );
+            tooltip.setShowDuration(Duration.seconds(3));
+            button.setTooltip(tooltip);
+            getLogger().error("NO INPUT");
+            return false;
+        }
+        else if (firstName.isEmpty() && (lastName.isEmpty() || address.isEmpty() || value.isEmpty())) {
+            Tooltip tooltip = initToolTip(
+                    "Cannot Add Client, First Name is empty",
+                    event,
+                    errorToolTipStyle()
+            );
+            tooltip.setShowDuration(Duration.seconds(3));
+            button.setTooltip(tooltip);
+            getLogger().error("NO FIRST NAME");
+            return false;
+        }
+        else if (lastName.isEmpty() && (address.isEmpty() || value.isEmpty())) {
+            Tooltip tooltip = initToolTip(
+                    "Cannot Add Client, Last Name is empty",
+                    event,
+                    errorToolTipStyle()
+            );
+            tooltip.setShowDuration(Duration.seconds(3));
+            button.setTooltip(tooltip);
+            getLogger().error("NO LAST NAME");
+            return false;
+        }
+        else if (address.isEmpty() && value.isEmpty()) {
+            Tooltip tooltip = initToolTip(
+                    "Cannot Add Client, Address is empty",
+                    event,
+                    errorToolTipStyle()
+            );
+            tooltip.setShowDuration(Duration.seconds(3));
+            button.setTooltip(tooltip);
+            getLogger().error("NO ADDRESS");
+            return false;
+        }
+        else if (value.isEmpty()) {
+            Tooltip tooltip = initToolTip(
+                    "Cannot Add Client, Date is empty",
+                    event,
+                    errorToolTipStyle()
+            );
+            tooltip.setShowDuration(Duration.seconds(3));
+            button.setTooltip(tooltip);
+            getLogger().error("NO DATE");
+            return false;
+        }
+        return true;
+    }
+
+    static void fillTable(Client client, TableView<Client> tableView) {
+        tableView.getItems().add(client);
+    }
+
+    static String generateRandomAccountNumber() {
+        return String.valueOf(new Random().nextInt(999999999) + 1);
+    }
+
+    static String generateRandomPin() {
+        return String.valueOf(new Random().nextInt(9999) + 1);
+    }
+
 }
 
 /**
@@ -171,6 +270,7 @@ class Fields {
      * The parents array.
      */
     static DynamicArray<Parent> parents = new DynamicArray<>();
+    static DynamicArray<Button> activeButtons = new DynamicArray<>();
     static Set<String> locations;
     static {
         try {
