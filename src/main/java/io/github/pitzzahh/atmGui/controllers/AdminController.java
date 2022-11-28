@@ -3,19 +3,16 @@ package io.github.pitzzahh.atmGui.controllers;
 import static io.github.pitzzahh.atmGui.Atm.getLogger;
 import static io.github.pitzzahh.atmGui.Atm.getStage;
 import static io.github.pitzzahh.atmGui.util.Util.*;
-
-import javafx.scene.control.*;
 import org.controlsfx.control.textfield.TextFields;
 import io.github.pitzzahh.atmGui.entity.Client;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.event.ActionEvent;
+import javafx.scene.control.*;
 import javafx.util.Duration;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
-
-import java.util.Optional;
 
 /**
  * FXML Controller class for Admin page
@@ -38,6 +35,9 @@ public class AdminController {
     public TableView<Client> addClientsTable;
 
     @FXML
+    public Button addClientButton;
+
+    @FXML
     private Button addClients;
 
     @FXML
@@ -54,6 +54,8 @@ public class AdminController {
 
     @FXML
     private Button logout;
+
+    private boolean isOk;
 
     /**
      * Shows a tooltip when the mouse is hovered over the add clients button.
@@ -214,43 +216,50 @@ public class AdminController {
         binding.setHideOnEscape(true);
     }
 
-    public void onSaveClient(MouseEvent mouseEvent) {
-        final var FIRST_NAME = firstName.getText().trim();
-        final var LAST_NAME = lastName.getText().trim();
-        final var ADDRESS = address.getText().trim();
-        boolean ok = checkInputs(
-                mouseEvent.getTarget() instanceof Button ? (Button) mouseEvent.getTarget() : new Button(),
-                mouseEvent,
-                FIRST_NAME,
-                LAST_NAME,
-                ADDRESS,
-                dateOfBirth
-        );
-        getLogger().error(String.format("Is ok %s", ok));
-        if (ok) fillTable(
-                new Client(
-                        FIRST_NAME.concat(" ").concat(LAST_NAME),
-                        ADDRESS,
-                        dateOfBirth.getValue(),
-                        generateRandomAccountNumber(),
-                        generateRandomPin()
-                ),
-                addClientsTable
-        );
+    @FXML
+    public void onAddClient(MouseEvent mouseEvent) {
+        mouseEvent.consume();
+        getLogger().debug(String.format("IS OK %s", isOk));
+        if (isOk) {
+            final var FIRST_NAME = firstName.getText().trim();
+            final var LAST_NAME = lastName.getText().trim();
+            final var ADDRESS = address.getText().trim();
+            fillTable(
+                    new Client(
+                            FIRST_NAME.concat(" ").concat(LAST_NAME),
+                            ADDRESS,
+                            dateOfBirth.getValue(),
+                            generateRandomAccountNumber(),
+                            generateRandomPin()
+                    ),
+                    addClientsTable
+            );
+        }
     }
 
-    public void onSaveClientAttempt(MouseEvent mouseEvent) {
+    @FXML
+    public void onAddClientAttempt(MouseEvent mouseEvent) {
         final var FIRST_NAME = firstName.getText().trim();
         final var LAST_NAME = lastName.getText().trim();
         final var ADDRESS = address.getText().trim();
-        boolean ok = checkInputs(
-                mouseEvent.getTarget() instanceof Button ? (Button) mouseEvent.getTarget() : new Button(),
+        isOk = checkInputs(
+                addClientButton,
                 mouseEvent,
                 FIRST_NAME,
                 LAST_NAME,
                 ADDRESS,
                 dateOfBirth
         );
-        ((Button) mouseEvent.getTarget()).setDisable(!ok);
+        if (isOk && addClientButton.getTooltip() != null) addClientButton.setTooltip(null);
+    }
+
+    @FXML
+    public void onClear(ActionEvent event) {
+        event.consume();
+        firstName.clear();
+        lastName.clear();
+        address.clear();
+        dateOfBirth.setValue(null);
+        addClientButton.setDisable(false);
     }
 }
