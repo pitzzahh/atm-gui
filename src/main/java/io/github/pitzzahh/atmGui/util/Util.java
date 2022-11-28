@@ -1,9 +1,7 @@
 package io.github.pitzzahh.atmGui.util;
 
-import io.github.pitzzahh.atmGui.Atm;
 import io.github.pitzzahh.util.utilities.classes.DynamicArray;
 import io.github.pitzzahh.util.utilities.SecurityUtil;
-
 import static io.github.pitzzahh.atmGui.Atm.getLogger;
 import static io.github.pitzzahh.atmGui.Atm.getStage;
 import java.util.concurrent.atomic.AtomicReference;
@@ -19,9 +17,10 @@ import javafx.event.ActionEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.*;
-import javafx.scene.Parent;
 import javafx.util.Duration;
+import javafx.scene.Parent;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.io.File;
 import java.util.*;
 
@@ -186,9 +185,25 @@ public interface Util {
     }
 
     static boolean checkInputs(Button button, MouseEvent event, String firstName, String lastName, String address, DatePicker date) {
-        if (firstName.isEmpty() && (lastName.isEmpty() || address.isEmpty() || date == null)) {
+
+        assert date != null;
+        Optional<LocalDate> value = Optional.ofNullable(date.getValue());
+        getLogger().error(format("IS DATE NULL: %s", value));
+
+        if (firstName.isEmpty() && lastName.isEmpty() && address.isEmpty() && value.isEmpty()) {
             Tooltip tooltip = initToolTip(
-                    "Cannot Save Client, First Name is empty",
+                    "Cannot Add Client, All Required Input are empty",
+                    event,
+                    errorToolTipStyle()
+            );
+            tooltip.setShowDuration(Duration.seconds(3));
+            button.setTooltip(tooltip);
+            getLogger().error("NO INPUT");
+            return false;
+        }
+        else if (firstName.isEmpty() && (lastName.isEmpty() || address.isEmpty() || value.isEmpty())) {
+            Tooltip tooltip = initToolTip(
+                    "Cannot Add Client, First Name is empty",
                     event,
                     errorToolTipStyle()
             );
@@ -197,10 +212,10 @@ public interface Util {
             getLogger().error("NO FIRST NAME");
             return false;
         }
-        if (lastName.isEmpty() && (address.isEmpty() || date == null)) {
+        else if (lastName.isEmpty() && (address.isEmpty() || value.isEmpty())) {
             Tooltip tooltip = initToolTip(
-                    "Cannot Save Client, Last Name is empty",
-                    ((MouseEvent) event.getSource()),
+                    "Cannot Add Client, Last Name is empty",
+                    event,
                     errorToolTipStyle()
             );
             tooltip.setShowDuration(Duration.seconds(3));
@@ -208,10 +223,10 @@ public interface Util {
             getLogger().error("NO LAST NAME");
             return false;
         }
-        if (address.isEmpty() && date != null) {
+        else if (address.isEmpty() && value.isEmpty()) {
             Tooltip tooltip = initToolTip(
-                    "Cannot Save Client, Address is empty",
-                    ((MouseEvent) event.getSource()),
+                    "Cannot Add Client, Address is empty",
+                    event,
                     errorToolTipStyle()
             );
             tooltip.setShowDuration(Duration.seconds(3));
@@ -219,10 +234,10 @@ public interface Util {
             getLogger().error("NO ADDRESS");
             return false;
         }
-        if (date == null) {
+        else if (value.isEmpty()) {
             Tooltip tooltip = initToolTip(
-                    "Cannot Save Client, Date is empty",
-                    ((MouseEvent) event.getSource()),
+                    "Cannot Add Client, Date is empty",
+                    event,
                     errorToolTipStyle()
             );
             tooltip.setShowDuration(Duration.seconds(3));
@@ -244,6 +259,7 @@ public interface Util {
     static String generateRandomPin() {
         return String.valueOf(new Random().nextInt(9999) + 1);
     }
+
 }
 
 /**
